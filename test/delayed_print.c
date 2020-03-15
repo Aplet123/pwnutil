@@ -4,6 +4,7 @@
 #include <sys/types.h>
 
 int main() {
+    setvbuf(stdout, NULL, _IONBF, 0);
     puts("First print");
     sleep(1);
     puts("Second print");
