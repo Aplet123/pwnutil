@@ -1,0 +1,24 @@
+{
+  "name": "pwnutil",
+  "version": "0.0.1",
+  "description": "Pwntools but in JS.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"no test\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aplet123/pwnutil.git"
+  },
+  "keywords": [
+    "pwn",
+    "pwnutil",
+    "pwntools"
+  ],
+  "author": "aplet123",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Aplet123/pwnutil/issues"
+  },
+  "homepage": "https://github.com/Aplet123/pwnutil#readme"
+}
