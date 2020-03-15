@@ -4,7 +4,7 @@ import { EventEmitter } from "events";
  * @param emitter The EventEmitter to wait for.
  * @param event The event to wait for.
  */
-export function waitForEvent(emitter: EventEmitter, event: string): Promise<> {
+export function waitForEvent(emitter: EventEmitter, event: string): Promise<IArguments> {
     return new Promise((res, rej) => emitter.once(event, function() {
         res(arguments);
     }));
