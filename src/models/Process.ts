@@ -22,10 +22,6 @@ export interface Process {
      * @param signal The signal to send to the process.
      */
     kill: (signal?: string) => void;
-    /**
-     * The exit code of the process, or null if it is still running.
-     */
-    exitCode: null | number;
 }
 
 export function IOFromProcess(p: Process): IOFull {
