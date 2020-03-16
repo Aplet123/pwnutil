@@ -1,6 +1,7 @@
 import { Tube } from "./Tube";
 import child_process from "child_process";
 import { Process, IOFromProcess } from "../../models/Process";
+import { aliasClass } from "../helpers/alias";
 
 /**
  * A set of options for the ProcessTube class.
@@ -39,4 +40,10 @@ export class ProcessTube extends Tube {
     }
 }
 
-export { ProcessTube as process };
+/**
+ * An alias for ProcessTube that doesn't require `new`.
+ * @param args Any arguments to pass on to ProcessTube.
+ */
+export function process(...args: Array<any>) {
+    return aliasClass(ProcessTube, args);
+}
