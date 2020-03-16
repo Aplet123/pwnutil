@@ -1,16 +1,29 @@
-import { IOAble, IOReadable, IOWritable, isReadable, isWritable, isDestroyable, IODestroyed } from "../../models/IO";
+import {
+    IOAble,
+    IOReadable,
+    IOWritable,
+    isReadable,
+    isWritable,
+    isDestroyable,
+    IODestroyed
+} from "../../models/IO";
 import { EventEmitter } from "events";
 import { waitForEvent, waitForTime } from "../helpers/wait";
 import { Stringable } from "../../models/Stringable";
 
 /**
  * A class for interfacing with something that has i/o.
- * 
+ *
  * Be aware that this class may heavily suffer from race conditions so do not attempt to use it concurrently.
  */
 export class Tube extends EventEmitter {
-
+    /**
+     * The IO object the tube is wrapping around.
+     */
     private io: IOAble;
+    /**
+     * The buffered data.
+     */
     private outBuffer: Buffer;
 
     /**
@@ -28,7 +41,10 @@ export class Tube extends EventEmitter {
                 if (typeof data == "string") {
                     data = Buffer.from(data);
                 }
-                that.outBuffer = Buffer.concat([that.outBuffer, data], that.outBuffer.length + data.length);
+                that.outBuffer = Buffer.concat(
+                    [that.outBuffer, data],
+                    that.outBuffer.length + data.length
+                );
                 that.emit("data", data);
             });
             this.io.output.on("close", function() {
@@ -60,7 +76,11 @@ export class Tube extends EventEmitter {
      * @param encoding The encoding to use.
      * @return The data received.
      */
-    async recvS(bytes: number = 4096, timeout: number = 15, encoding: string = "utf8"): Promise<string> {
+    async recvS(
+        bytes: number = 4096,
+        timeout: number = 15,
+        encoding: string = "utf8"
+    ): Promise<string> {
         return (await this.recv(bytes, timeout)).toString(encoding);
     }
 
@@ -90,7 +110,11 @@ export class Tube extends EventEmitter {
      * @param timeout The time, in seconds, to stop waiting for data and to timeout.
      * @param throwIncomplete If true, an error will be thrown on timeout. Otherwise, all data received will be returned.
      */
-    async recvuntil(delims: Stringable | Array<Stringable>, timeout: number = 15, throwIncomplete: boolean = true) {
+    async recvuntil(
+        delims: Stringable | Array<Stringable>,
+        timeout: number = 15,
+        throwIncomplete: boolean = true
+    ) {
         if (!(delims instanceof Array)) {
             delims = [delims];
         }
@@ -134,6 +158,4 @@ export class Tube extends EventEmitter {
         }
         this.io = IODestroyed;
     }
-
-
 }
