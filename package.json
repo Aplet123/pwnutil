@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"no test\"",
     "build": "tsc",
-    "export": "tsc && (node dist/src/genExports.js > src/index.ts) && tsc"
+    "export": "tsc && (node dist/src/genExports.js > src/index.ts) && tsc",
+    "doc": "typedoc --out docs src"
   },
   "repository": {
     "type": "git",
