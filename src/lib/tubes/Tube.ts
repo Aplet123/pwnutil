@@ -22,7 +22,6 @@ export class Tube extends EventEmitter {
         if (isReadable(this.io)) {
             let that: Tube = this;
             this.io.output.on("data", function(data: Buffer | string) {
-                console.log("got data");
                 if (typeof data == "string") {
                     data = Buffer.from(data);
                 }
@@ -43,7 +42,6 @@ export class Tube extends EventEmitter {
         if (this.outBuffer.length == 0) {
             await waitForEvent(this, "data");
         }
-        console.log("receiving");
         let first: Buffer = this.outBuffer.slice(0, bytes);
         let second: Buffer = this.outBuffer.slice(bytes);
         this.outBuffer = second;

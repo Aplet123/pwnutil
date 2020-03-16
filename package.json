@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"no test\"",
-    "build": "tsc"
+    "build": "tsc",
+    "export": "tsc && (node dist/src/genExports.js > src/index.ts) && tsc"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "@typescript-eslint/eslint-plugin": "^2.23.0",
     "@typescript-eslint/parser": "^2.23.0",
     "eslint": "^6.8.0",
+    "typedoc": "^0.17.0",
     "typescript": "^3.8.3"
   },
   "dependencies": {
