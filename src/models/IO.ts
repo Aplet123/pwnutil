@@ -1,9 +1,27 @@
 import { Readable, Writable } from "stream";
 
 /**
+ * An object with some kind of IO.
+ */
+export interface IOAble {
+    /**
+     * The output.
+     */
+    output?: Readable;
+    /**
+     * The input.
+     */
+    input?: Writable;
+    /**
+     * Destroy the IO object.
+     */
+    destroy?: () => Promise<any>;
+}
+
+/**
  * A readable IO object.
  */
-export interface IOReadable {
+export interface IOReadable extends IOAble {
     /**
      * The output.
      */
@@ -13,7 +31,7 @@ export interface IOReadable {
 /**
  * A writable IO object.
  */
-export interface IOWritable {
+export interface IOWritable extends IOAble {
     /**
      * The input.
      */
@@ -23,7 +41,7 @@ export interface IOWritable {
 /**
  * A destroyable IO object.
  */
-export interface IODestroyable {
+export interface IODestroyable extends IOAble {
     /**
      * Destroys the IO object.
      */
@@ -55,10 +73,6 @@ export function isDestroyable(io: IOAble): io is IODestroyable {
 }
 
 /**
- * An IO object that is readable, writable, or destroyable.
- */
-export type IOAble = IOReadable | IOWritable | IODestroyable;
-/**
  * An IO object that is readable, writable, and destroyable.
  */
 export type IOFull = IOReadable & IOWritable & IODestroyable;
@@ -66,6 +80,4 @@ export type IOFull = IOReadable & IOWritable & IODestroyable;
 /**
  * An IO object that has been destroyed.
  */
-export const IODestroyed: IODestroyable = {
-    destroy: async () => { throw new Error("Cannot re-destroy IO object."); }
-};
+export const IODestroyed: IOAble = {};

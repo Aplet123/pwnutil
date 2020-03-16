@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IOReadable | pwnutil - v0.0.1</title>
+	<title>IOAble | pwnutil - v0.0.1</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -59,10 +59,10 @@
 					<a href="../modules/_models_io_.html">&quot;models/IO&quot;</a>
 				</li>
 				<li>
-					<a href="_models_io_.ioreadable.html">IOReadable</a>
+					<a href="_models_io_.ioable.html">IOAble</a>
 				</li>
 			</ul>
-			<h1>Interface IOReadable</h1>
+			<h1>Interface IOAble</h1>
 		</div>
 	</div>
 </header>
@@ -72,7 +72,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A readable IO object.</p>
+						<p>An object with some kind of IO.</p>
 					</div>
 				</div>
 			</section>
@@ -80,10 +80,16 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="_models_io_.ioable.html" class="tsd-signature-type">IOAble</a>
+						<span class="target">IOAble</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">IOReadable</span>
+								<a href="_models_io_.ioreadable.html" class="tsd-signature-type">IOReadable</a>
+							</li>
+							<li>
+								<a href="_models_io_.iowritable.html" class="tsd-signature-type">IOWritable</a>
+							</li>
+							<li>
+								<a href="_models_io_.iodestroyable.html" class="tsd-signature-type">IODestroyable</a>
 							</li>
 						</ul>
 					</li>
@@ -96,9 +102,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_models_io_.ioreadable.html#destroy" class="tsd-kind-icon">destroy</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_models_io_.ioreadable.html#input" class="tsd-kind-icon">input</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="_models_io_.ioreadable.html#output" class="tsd-kind-icon">output</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_io_.ioable.html#destroy" class="tsd-kind-icon">destroy</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_io_.ioable.html#input" class="tsd-kind-icon">input</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_io_.ioable.html#output" class="tsd-kind-icon">output</a></li>
 							</ul>
 						</section>
 					</div>
@@ -106,12 +112,11 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="destroy" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> destroy</h3>
 					<div class="tsd-signature tsd-kind-icon">destroy<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="_models_io_.ioable.html">IOAble</a>.<a href="_models_io_.ioable.html#destroy">destroy</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/f9082ff/src/models/IO.ts#L18">src/models/IO.ts:18</a></li>
 						</ul>
@@ -122,12 +127,11 @@
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="input" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> input</h3>
 					<div class="tsd-signature tsd-kind-icon">input<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Writable</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="_models_io_.ioable.html">IOAble</a>.<a href="_models_io_.ioable.html#input">input</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/f9082ff/src/models/IO.ts#L14">src/models/IO.ts:14</a></li>
 						</ul>
@@ -138,14 +142,13 @@
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="output" class="tsd-anchor"></a>
-					<h3>output</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> output</h3>
 					<div class="tsd-signature tsd-kind-icon">output<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readable</span></div>
 					<aside class="tsd-sources">
-						<p>Overrides <a href="_models_io_.ioable.html">IOAble</a>.<a href="_models_io_.ioable.html#output">output</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/f9082ff/src/models/IO.ts#L28">src/models/IO.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/f9082ff/src/models/IO.ts#L10">src/models/IO.ts:10</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -196,30 +199,30 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_models_io_.ioable.html" class="tsd-kind-icon">IOAble</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_models_io_.iodestroyable.html" class="tsd-kind-icon">IODestroyable</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="_models_io_.ioreadable.html" class="tsd-kind-icon">IOReadable</a>
+						<a href="_models_io_.ioable.html" class="tsd-kind-icon">IOAble</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_models_io_.ioreadable.html#destroy" class="tsd-kind-icon">destroy</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_io_.ioable.html#destroy" class="tsd-kind-icon">destroy</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_models_io_.ioreadable.html#input" class="tsd-kind-icon">input</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_io_.ioable.html#input" class="tsd-kind-icon">input</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
-								<a href="_models_io_.ioreadable.html#output" class="tsd-kind-icon">output</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_io_.ioable.html#output" class="tsd-kind-icon">output</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_models_io_.iodestroyable.html" class="tsd-kind-icon">IODestroyable</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_models_io_.ioreadable.html" class="tsd-kind-icon">IOReadable</a>
+					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="_models_io_.iowritable.html" class="tsd-kind-icon">IOWritable</a>
 					</li>

@@ -49,8 +49,36 @@ export class Tube extends EventEmitter {
             });
             this.io.output.on("close", function() {
                 that.emit("data", Buffer.alloc(0));
+                that.io.output = undefined;
             });
         }
+    }
+
+    /**
+     * Checks if the io object is connected in a direction.
+     * @param direction Direction to check. Can be "in", "read", "recv", "out", "send", "write", "any", "either", "both".
+     * @return If the io object is connected in the specified direction.
+     */
+    connected(direction: string): boolean {
+        if (["in", "read", "recv"].includes(direction)) {
+            if (isReadable(this.io) || this.outBuffer.length > 0) {
+                return true;
+            }
+            return false;
+        }
+        if (["out", "send", "write"].includes(direction)) {
+            if (isWritable(this.io)) {
+                return true;
+            }
+            return false;
+        }
+        if (["any", "either"].includes(direction)) {
+            return this.connected("in") || this.connected("out");
+        }
+        if (["both"].includes(direction)) {
+            return this.connected("in") && this.connected("out");
+        }
+        throw new Error("Invalid direction");
     }
 
     /**
@@ -60,6 +88,9 @@ export class Tube extends EventEmitter {
      * @return The data received.
      */
     async recv(bytes: number = 4096, timeout: number = 15): Promise<Buffer> {
+        if (!this.connected("in")) {
+            throw new Error("Cannot read from io object.");
+        }
         if (this.outBuffer.length == 0) {
             await waitForEvent(this, "data", timeout * 1000);
         }
@@ -85,11 +116,14 @@ export class Tube extends EventEmitter {
     }
 
     /**
-     * Keep receiving data until the tube closes.
+     * Keep receiving data until the output closes.
      * @return The data received.
      */
     async recvall(): Promise<Buffer> {
-        await waitForEvent(this, "close", -1);
+        if (!this.connected("in")) {
+            throw new Error("Cannot read from io object.");
+        }
+        await waitForEvent((this.io as IOReadable).output, "close", -1);
         const ret: Buffer = this.outBuffer;
         this.outBuffer = Buffer.alloc(0);
         return ret;
@@ -115,8 +149,40 @@ export class Tube extends EventEmitter {
         timeout: number = 15,
         throwIncomplete: boolean = true
     ) {
+        if (!this.connected("in")) {
+            throw new Error("Cannot read from io object.");
+        }
         if (!(delims instanceof Array)) {
             delims = [delims];
+        }
+        let resolve: (v: any) => void = _ => undefined;
+        const prom: Promise<any> = new Promise(res => resolve = res);
+        waitForTime(timeout * 1000, prom, true).then(resolve);
+        const that: Tube = this;
+        function dataHandler(): void {
+            let indices: Array<[Stringable, number]> = (delims as Array<Stringable>).map(v => [v, that.outBuffer.indexOf(v)]);
+            indices = indices.filter(v => v[1] != -1).sort((a, b) => a[1] - b[1]);
+            if (indices.length != 0) {
+                console.log("resolving");
+                resolve(0);
+            }
+            waitForEvent(that, "data", prom, true).then(dataHandler);
+        };
+        waitForEvent(that, "data", prom, true).then(dataHandler);
+        await waitForEvent(this, "close", prom, true);
+        let indices: Array<[Stringable, number]> = (delims as Array<Stringable>).map(v => [v, this.outBuffer.indexOf(v)]);
+        indices = indices.filter(v => v[1] != -1).sort((a, b) => a[1] - b[1]);
+        if (indices.length == 0) {
+            if (throwIncomplete) {
+                throw new Error("Did not read deliminator before io stream closed.");
+            } else {
+                const ret: Buffer = this.outBuffer;
+                this.outBuffer = Buffer.alloc(0);
+                return ret;
+            }
+        } else {
+            const index: number = indices[0][1] + indices[0][0].length;
+            return await this.recv(index);
         }
     }
 

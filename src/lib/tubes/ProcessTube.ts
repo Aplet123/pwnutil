@@ -34,7 +34,6 @@ export class ProcessTube extends Tube {
             args = ["-i0", "-o0", "-e0", command, ...args];
             command = "stdbuf";
         }
-        console.log(args);
         const proc: Process = child_process.spawn(command, args, childOptions) as Process;
         super(IOFromProcess(proc));
     }
