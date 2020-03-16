@@ -88,8 +88,15 @@
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_models_io_.html#isdestroyable" class="tsd-kind-icon">is<wbr>Destroyable</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_models_io_.html#isreadable" class="tsd-kind-icon">is<wbr>Readable</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_models_io_.html#iswritable" class="tsd-kind-icon">is<wbr>Writable</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Object literals</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-object-literal tsd-parent-kind-module"><a href="_models_io_.html#iodestroyed" class="tsd-kind-icon">IODestroyed</a></li>
 							</ul>
 						</section>
 					</div>
@@ -100,15 +107,15 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
 					<a name="ioable" class="tsd-anchor"></a>
 					<h3>IOAble</h3>
-					<div class="tsd-signature tsd-kind-icon">IOAble<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_models_io_.ioreadable.html" class="tsd-signature-type">IOReadable</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_models_io_.iowritable.html" class="tsd-signature-type">IOWritable</a></div>
+					<div class="tsd-signature tsd-kind-icon">IOAble<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_models_io_.ioreadable.html" class="tsd-signature-type">IOReadable</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_models_io_.iowritable.html" class="tsd-signature-type">IOWritable</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_models_io_.iodestroyable.html" class="tsd-signature-type">IODestroyable</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/cd960e8/src/models/IO.ts#L52">src/models/IO.ts:52</a></li>
+							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/e05cf01/src/models/IO.ts#L60">src/models/IO.ts:60</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>An IO object that is either readable or writable.</p>
+							<p>An IO object that is readable, writable, or destroyable.</p>
 						</div>
 					</div>
 				</section>
@@ -118,7 +125,7 @@
 					<div class="tsd-signature tsd-kind-icon">IOFull<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_models_io_.ioreadable.html" class="tsd-signature-type">IOReadable</a><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/_models_io_.iowritable.html" class="tsd-signature-type">IOWritable</a><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/_models_io_.iodestroyable.html" class="tsd-signature-type">IODestroyable</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/cd960e8/src/models/IO.ts#L56">src/models/IO.ts:56</a></li>
+							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/e05cf01/src/models/IO.ts#L64">src/models/IO.ts:64</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -131,6 +138,37 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="isdestroyable" class="tsd-anchor"></a>
+					<h3>is<wbr>Destroyable</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Destroyable<span class="tsd-signature-symbol">(</span>io<span class="tsd-signature-symbol">: </span><a href="_models_io_.html#ioable" class="tsd-signature-type">IOAble</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">io</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">IODestroyable</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/e05cf01/src/models/IO.ts#L53">src/models/IO.ts:53</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks if an IOAble object is destroyable.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>io: <a href="_models_io_.html#ioable" class="tsd-signature-type">IOAble</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The IO object to check.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">io</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">IODestroyable</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
 					<a name="isreadable" class="tsd-anchor"></a>
 					<h3>is<wbr>Readable</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
@@ -140,7 +178,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/cd960e8/src/models/IO.ts#L37">src/models/IO.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/e05cf01/src/models/IO.ts#L37">src/models/IO.ts:37</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -171,7 +209,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/cd960e8/src/models/IO.ts#L45">src/models/IO.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/e05cf01/src/models/IO.ts#L45">src/models/IO.ts:45</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -191,6 +229,41 @@
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">io</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">IOWritable</span></h4>
 						</li>
 					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Object literals</h2>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-module">
+					<a name="iodestroyed" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> IODestroyed</h3>
+					<div class="tsd-signature tsd-kind-icon">IODestroyed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/e05cf01/src/models/IO.ts#L69">src/models/IO.ts:69</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An IO object that has been destroyed.</p>
+						</div>
+					</div>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="iodestroyed.destroy" class="tsd-anchor"></a>
+						<h3>destroy</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">destroy<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">&gt;</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/e05cf01/src/models/IO.ts#L70">src/models/IO.ts:70</a></li>
+									</ul>
+								</aside>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							</li>
+						</ul>
+					</section>
 				</section>
 			</section>
 		</div>
@@ -215,11 +288,20 @@
 					<li class=" tsd-kind-module">
 						<a href="_lib_tubes_tube_.html">&quot;lib/tubes/<wbr>Tube&quot;</a>
 					</li>
+					<li class=" tsd-kind-module">
+						<a href="_lib_util_logger_.html">&quot;lib/util/logger&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_lib_util_pad_.html">&quot;lib/util/pad&quot;</a>
+					</li>
 					<li class="current tsd-kind-module">
 						<a href="_models_io_.html">&quot;models/IO&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="_models_process_.html">&quot;models/<wbr>Process&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_models_stringable_.html">&quot;models/<wbr>Stringable&quot;</a>
 					</li>
 				</ul>
 			</nav>
@@ -241,10 +323,16 @@
 						<a href="_models_io_.html#iofull" class="tsd-kind-icon">IOFull</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="_models_io_.html#isdestroyable" class="tsd-kind-icon">is<wbr>Destroyable</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="_models_io_.html#isreadable" class="tsd-kind-icon">is<wbr>Readable</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="_models_io_.html#iswritable" class="tsd-kind-icon">is<wbr>Writable</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-parent-kind-module">
+						<a href="_models_io_.html#iodestroyed" class="tsd-kind-icon">IODestroyed</a>
 					</li>
 				</ul>
 			</nav>

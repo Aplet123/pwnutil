@@ -24,6 +24,11 @@ export interface Process {
     kill: (signal?: string) => void;
 }
 
+/**
+ * Creates an IOAble object from a process.
+ * @param p The process.
+ * @return The IOAble object.
+ */
 export function IOFromProcess(p: Process): IOFull {
     let outStream: Duplex = new PassThrough();
     let streams: Array<Readable> = [p.stdout];
@@ -36,7 +41,7 @@ export function IOFromProcess(p: Process): IOFull {
             end: false
         });
         stream.once("end", function() {
-            unfinished --;
+            unfinished--;
             if (unfinished === 0) {
                 outStream.end();
             }
@@ -45,6 +50,6 @@ export function IOFromProcess(p: Process): IOFull {
     return {
         output: outStream,
         input: p.stdin,
-        destroy: p.kill
+        destroy: async () => p.kill()
     };
 }

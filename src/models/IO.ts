@@ -27,7 +27,7 @@ export interface IODestroyable {
     /**
      * Destroys the IO object.
      */
-    destroy: () => void;
+    destroy: () => Promise<any>;
 }
 
 /**
@@ -47,10 +47,25 @@ export function isWritable(io: IOAble): io is IOWritable {
 }
 
 /**
- * An IO object that is either readable or writable.
+ * Checks if an IOAble object is destroyable.
+ * @param io The IO object to check.
  */
-export type IOAble = IOReadable | IOWritable;
+export function isDestroyable(io: IOAble): io is IODestroyable {
+    return (io as IODestroyable).destroy != undefined;
+}
+
+/**
+ * An IO object that is readable, writable, or destroyable.
+ */
+export type IOAble = IOReadable | IOWritable | IODestroyable;
 /**
  * An IO object that is readable, writable, and destroyable.
  */
 export type IOFull = IOReadable & IOWritable & IODestroyable;
+
+/**
+ * An IO object that has been destroyed.
+ */
+export const IODestroyed: IODestroyable = {
+    destroy: async () => { throw new Error("Cannot re-destroy IO object."); }
+};

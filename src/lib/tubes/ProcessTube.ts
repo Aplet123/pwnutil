@@ -15,7 +15,7 @@ export interface ProcessTubeOptions {
 }
 
 /**
- * A class that generates a tube by running a process.
+ * A class that generates a tube by running a file or command.
  */
 export class ProcessTube extends Tube {
     /**
@@ -27,9 +27,9 @@ export class ProcessTube extends Tube {
      * @param childOptions Any options to pass to `child_process.spawn()`.
      */
     constructor(command: string, args: Array<string> = [], options: ProcessTubeOptions = {}, childOptions: child_process.SpawnOptions = {}) {
-        Object.assign(options, {
+        options = Object.assign({
             buffered: false
-        });
+        }, options);
         if (!options.buffered) {
             args = ["-i0", "-o0", "-e0", command, ...args];
             command = "stdbuf";
@@ -43,7 +43,8 @@ export class ProcessTube extends Tube {
 /**
  * An alias for ProcessTube that doesn't require `new`.
  * @param args Any arguments to pass on to ProcessTube.
+ * @return A ProcessTube instance.
  */
-export function process(...args: Array<any>) {
+export function proc(...args: Array<any>) {
     return aliasClass(ProcessTube, args);
 }

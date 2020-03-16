@@ -74,6 +74,7 @@
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_lib_helpers_wait_.html#waitforevent" class="tsd-kind-icon">wait<wbr>For<wbr>Event</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_lib_helpers_wait_.html#waitfortime" class="tsd-kind-icon">wait<wbr>For<wbr>Time</a></li>
 							</ul>
 						</section>
 					</div>
@@ -85,13 +86,13 @@
 					<a name="waitforevent" class="tsd-anchor"></a>
 					<h3>wait<wbr>For<wbr>Event</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">wait<wbr>For<wbr>Event<span class="tsd-signature-symbol">(</span>emitter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">EventEmitter</span>, event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">IArguments</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">wait<wbr>For<wbr>Event<span class="tsd-signature-symbol">(</span>emitter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">EventEmitter</span>, event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, reject<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">IArguments</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/cd960e8/src/lib/helpers/wait.ts#L7">src/lib/helpers/wait.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/e05cf01/src/lib/helpers/wait.ts#L11">src/lib/helpers/wait.ts:11</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -113,8 +114,53 @@
 										<p>The event to wait for.</p>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> timeout: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = -1</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The timeout, in milliseconds, to stop waiting for the event. Provide a negative number for no timeout.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> reject: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If set to true, the promise will reject when the timeout hits instead of resolving to null.</p>
+									</div>
+								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">IArguments</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">IArguments</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise that resolves with an array of values used to call the event.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="waitfortime" class="tsd-anchor"></a>
+					<h3>wait<wbr>For<wbr>Time</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">wait<wbr>For<wbr>Time<span class="tsd-signature-symbol">(</span>time<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/e05cf01/src/lib/helpers/wait.ts#L38">src/lib/helpers/wait.ts:38</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Waits for a period of time.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>time: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Time in milliseconds.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise that resolves after the time is over.</p>
 						</li>
 					</ul>
 				</section>
@@ -142,10 +188,19 @@
 						<a href="_lib_tubes_tube_.html">&quot;lib/tubes/<wbr>Tube&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="_lib_util_logger_.html">&quot;lib/util/logger&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_lib_util_pad_.html">&quot;lib/util/pad&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="_models_io_.html">&quot;models/IO&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="_models_process_.html">&quot;models/<wbr>Process&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_models_stringable_.html">&quot;models/<wbr>Stringable&quot;</a>
 					</li>
 				</ul>
 			</nav>
@@ -153,6 +208,9 @@
 				<ul class="before-current">
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="_lib_helpers_wait_.html#waitforevent" class="tsd-kind-icon">wait<wbr>For<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="_lib_helpers_wait_.html#waitfortime" class="tsd-kind-icon">wait<wbr>For<wbr>Time</a>
 					</li>
 				</ul>
 			</nav>

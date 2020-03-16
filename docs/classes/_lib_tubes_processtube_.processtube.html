@@ -72,7 +72,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A class that generates a tube by running a process.</p>
+						<p>A class that generates a tube by running a file or command.</p>
 					</div>
 				</div>
 			</section>
@@ -103,6 +103,9 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_lib_tubes_processtube_.processtube.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_lib_tubes_processtube_.processtube.html#canrecv" class="tsd-kind-icon">can<wbr>Recv</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_lib_tubes_processtube_.processtube.html#clean" class="tsd-kind-icon">clean</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_lib_tubes_processtube_.processtube.html#close" class="tsd-kind-icon">close</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_lib_tubes_processtube_.processtube.html#emit" class="tsd-kind-icon">emit</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_lib_tubes_processtube_.processtube.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_lib_tubes_processtube_.processtube.html#getmaxlisteners" class="tsd-kind-icon">get<wbr>Max<wbr>Listeners</a></li>
@@ -115,6 +118,10 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_lib_tubes_processtube_.processtube.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_lib_tubes_processtube_.processtube.html#rawlisteners" class="tsd-kind-icon">raw<wbr>Listeners</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_lib_tubes_processtube_.processtube.html#recv" class="tsd-kind-icon">recv</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_lib_tubes_processtube_.processtube.html#recvs" class="tsd-kind-icon">recvS</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_lib_tubes_processtube_.processtube.html#recvall" class="tsd-kind-icon">recvall</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_lib_tubes_processtube_.processtube.html#recvalls" class="tsd-kind-icon">recvallS</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_lib_tubes_processtube_.processtube.html#recvuntil" class="tsd-kind-icon">recvuntil</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_lib_tubes_processtube_.processtube.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_lib_tubes_processtube_.processtube.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_lib_tubes_processtube_.processtube.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a></li>
@@ -136,7 +143,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_lib_tubes_tube_.tube.html">Tube</a>.<a href="_lib_tubes_tube_.tube.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/cd960e8/src/lib/tubes/ProcessTube.ts#L20">src/lib/tubes/ProcessTube.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/e05cf01/src/lib/tubes/ProcessTube.ts#L20">src/lib/tubes/ProcessTube.ts:20</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -228,6 +235,95 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="canrecv" class="tsd-anchor"></a>
+					<h3>can<wbr>Recv</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">can<wbr>Recv<span class="tsd-signature-symbol">(</span>timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_lib_tubes_tube_.tube.html">Tube</a>.<a href="_lib_tubes_tube_.tube.html#canrecv">canRecv</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/e05cf01/src/lib/tubes/Tube.ts#L104">src/lib/tubes/Tube.ts:104</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns true if there is data that can be received.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> timeout: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The time, in seconds, to wait for.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>If there is data that can be received.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="clean" class="tsd-anchor"></a>
+					<h3>clean</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">clean<span class="tsd-signature-symbol">(</span>timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_lib_tubes_tube_.tube.html">Tube</a>.<a href="_lib_tubes_tube_.tube.html#clean">clean</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/e05cf01/src/lib/tubes/Tube.ts#L114">src/lib/tubes/Tube.ts:114</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets rid of all remaining output of the tube by receiving data until there is none left.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> timeout: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0.05</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The timeout to pass to recv. If set to 0, the internal buffer will be cleared.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>The data that was cleaned.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="close" class="tsd-anchor"></a>
+					<h3>close</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">close<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_lib_tubes_tube_.tube.html">Tube</a>.<a href="_lib_tubes_tube_.tube.html#close">close</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/e05cf01/src/lib/tubes/Tube.ts#L131">src/lib/tubes/Tube.ts:131</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Closes the io if possible.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -595,14 +691,14 @@
 					<a name="recv" class="tsd-anchor"></a>
 					<h3>recv</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">recv<span class="tsd-signature-symbol">(</span>bytes<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">recv<span class="tsd-signature-symbol">(</span>bytes<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_lib_tubes_tube_.tube.html">Tube</a>.<a href="_lib_tubes_tube_.tube.html#recv">recv</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/cd960e8/src/lib/tubes/Tube.ts#L41">src/lib/tubes/Tube.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/e05cf01/src/lib/tubes/Tube.ts#L46">src/lib/tubes/Tube.ts:46</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -618,8 +714,161 @@
 										<p>The number of bytes to receive.</p>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> timeout: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 15</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The time, in seconds, to stop waiting for data and to timeout.</p>
+									</div>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>The data received.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="recvs" class="tsd-anchor"></a>
+					<h3>recvS</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">recvS<span class="tsd-signature-symbol">(</span>bytes<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, encoding<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_lib_tubes_tube_.tube.html">Tube</a>.<a href="_lib_tubes_tube_.tube.html#recvs">recvS</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/e05cf01/src/lib/tubes/Tube.ts#L63">src/lib/tubes/Tube.ts:63</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Equivalent to <code>recv</code> but decodes the buffer to a string.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> bytes: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 4096</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number of bytes to receive.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> timeout: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 15</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The time, in seconds, to stop waiting for data and to timeout.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> encoding: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;utf8&quot;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The encoding to use.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>The data received.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="recvall" class="tsd-anchor"></a>
+					<h3>recvall</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">recvall<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_lib_tubes_tube_.tube.html">Tube</a>.<a href="_lib_tubes_tube_.tube.html#recvall">recvall</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/e05cf01/src/lib/tubes/Tube.ts#L71">src/lib/tubes/Tube.ts:71</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Keep receiving data until the tube closes.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>The data received.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="recvalls" class="tsd-anchor"></a>
+					<h3>recvallS</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">recvallS<span class="tsd-signature-symbol">(</span>encoding<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_lib_tubes_tube_.tube.html">Tube</a>.<a href="_lib_tubes_tube_.tube.html#recvalls">recvallS</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/e05cf01/src/lib/tubes/Tube.ts#L83">src/lib/tubes/Tube.ts:83</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Equivalent to <code>recvall</code> but decodes the buffer to a string.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> encoding: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;utf8&quot;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The encoding to use.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>The data received.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="recvuntil" class="tsd-anchor"></a>
+					<h3>recvuntil</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">recvuntil<span class="tsd-signature-symbol">(</span>delims<span class="tsd-signature-symbol">: </span><a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a><span class="tsd-signature-symbol">&gt;</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, throwIncomplete<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_lib_tubes_tube_.tube.html">Tube</a>.<a href="_lib_tubes_tube_.tube.html#recvuntil">recvuntil</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/e05cf01/src/lib/tubes/Tube.ts#L93">src/lib/tubes/Tube.ts:93</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Receive data until a deliminator is encountered.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>delims: <a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Array of deliminators or one deliminator.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> timeout: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 15</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The time, in seconds, to stop waiting for data and to timeout.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> throwIncomplete: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If true, an error will be thrown on timeout. Otherwise, all data received will be returned.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -740,10 +989,19 @@
 						<a href="../modules/_lib_tubes_tube_.html">&quot;lib/tubes/<wbr>Tube&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="../modules/_lib_util_logger_.html">&quot;lib/util/logger&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_lib_util_pad_.html">&quot;lib/util/pad&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="../modules/_models_io_.html">&quot;models/IO&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/_models_process_.html">&quot;models/<wbr>Process&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_models_stringable_.html">&quot;models/<wbr>Stringable&quot;</a>
 					</li>
 				</ul>
 			</nav>
@@ -759,6 +1017,15 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_lib_tubes_processtube_.processtube.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_lib_tubes_processtube_.processtube.html#canrecv" class="tsd-kind-icon">can<wbr>Recv</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_lib_tubes_processtube_.processtube.html#clean" class="tsd-kind-icon">clean</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_lib_tubes_processtube_.processtube.html#close" class="tsd-kind-icon">close</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_lib_tubes_processtube_.processtube.html#emit" class="tsd-kind-icon">emit</a>
@@ -797,6 +1064,18 @@
 								<a href="_lib_tubes_processtube_.processtube.html#recv" class="tsd-kind-icon">recv</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_lib_tubes_processtube_.processtube.html#recvs" class="tsd-kind-icon">recvS</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_lib_tubes_processtube_.processtube.html#recvall" class="tsd-kind-icon">recvall</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_lib_tubes_processtube_.processtube.html#recvalls" class="tsd-kind-icon">recvallS</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_lib_tubes_processtube_.processtube.html#recvuntil" class="tsd-kind-icon">recvuntil</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_lib_tubes_processtube_.processtube.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
@@ -813,7 +1092,7 @@
 						<a href="../interfaces/_lib_tubes_processtube_.processtubeoptions.html" class="tsd-kind-icon">Process<wbr>Tube<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/_lib_tubes_processtube_.html#process" class="tsd-kind-icon">process</a>
+						<a href="../modules/_lib_tubes_processtube_.html#proc" class="tsd-kind-icon">proc</a>
 					</li>
 				</ul>
 			</nav>
