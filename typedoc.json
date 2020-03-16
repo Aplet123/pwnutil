@@ -1,0 +1,10 @@
+{
+    "inputFiles": ["./src"],
+    "mode": "modules",
+    "exclude": ["src/genExports.ts"],
+    "out": "./docs",
+    "theme": "default",
+    "name": "pwnutil",
+    "includeVersion": true,
+    "readme": "./README.md"
+}
