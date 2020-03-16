@@ -7,7 +7,7 @@
     "test": "echo \"no test\"",
     "build": "tsc",
     "export": "tsc && (node dist/src/genExports.js > src/index.ts) && tsc",
-    "doc": "typedoc --options typedoc.json && cp docs.yml docs/config.yml && touch docs/.nojekyll"
+    "doc": "typedoc --options typedoc.json && cp docconfig.yml docs/config.yml && touch docs/.nojekyll"
   },
   "repository": {
     "type": "git",
