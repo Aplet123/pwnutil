@@ -15,15 +15,20 @@ export function waitForEvent(
     reject: boolean = false
 ): Promise<IArguments | null> {
     return new Promise((res, rej) => {
+        let to: NodeJS.Timeout;
         function handler(x: any) {
-            if (reject) {
-
+            if (to) {
+                clearTimeout(to);
             }
-            res(arguments);
+            if (reject) {
+                rej("Hit timeout before event.");
+            } else {
+                res(arguments);
+            }
         }
         if (typeof timeout == "number") {
             if (timeout >= 0) {
-                setTimeout(function() {
+                to = setTimeout(function() {
                     if (reject) {
                         rej("Hit timeout before event.");
                     } else {

@@ -1,10 +1,11 @@
 import { IOFull } from "./IO";
 import { Readable, Writable, PassThrough, Duplex } from "stream";
+import { EventEmitter } from "events";
 
 /**
  * A process.
  */
-export interface Process {
+export interface Process extends EventEmitter {
     /**
      * The stdout of the process.
      */
@@ -35,17 +36,22 @@ export function IOFromProcess(p: Process): IOFull {
     if (p.stderr) {
         streams.push(p.stderr);
     }
-    let unfinished: number = streams.length;
+    let unfinished: Array<Readable> = streams;
+    function decrement(this: Readable) {
+        let index: number = unfinished.indexOf(this);
+        if (index != -1) {
+            unfinished.splice(index, 1);
+        }
+        if (unfinished.length == 0) {
+            outStream.destroy();
+        }
+    }
     for (const stream of streams) {
         stream.pipe(outStream, {
             end: false
         });
-        stream.once("end", function() {
-            unfinished--;
-            if (unfinished === 0) {
-                outStream.end();
-            }
-        });
+        stream.once("close", decrement);
+        stream.once("end", decrement);
     }
     return {
         output: outStream,

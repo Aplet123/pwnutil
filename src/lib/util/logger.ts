@@ -230,14 +230,15 @@ export function logSuccess(content: any, options: LogOptions): void {
 }
 
 /**
- * Logs something with magenta tag "*" if `LogContext.star` is set.
+ * Logs something as a string with magenta tag "*" if `LogContext.star` is set.
  * @param content Content to log.
  * @param options Logging options, see `LogOptions`.
  */
 export function logStar(content: any, options: LogOptions): void {
     options = Object.assign({
         tag: "*",
-        color: "magenta"
+        color: "magenta",
+        useToString: true
     }, options);
     if (!LogContext.star) {
         return;

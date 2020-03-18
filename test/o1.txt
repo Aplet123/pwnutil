@@ -1,0 +1,57 @@
+waiting here
+[*] First print
+Se
+[*] cond print
+Third print
+
+done waiting here
+There are 12 handle(s) keeping the process running
+
+# PROCESSWRAP
+/home/aplet123/packs/pwnutil/dist/src/lib/tubes/ProcessTube.js:30 - const proc = child_process_1.default.spawn(command, args, childOptions);
+/home/aplet123/packs/pwnutil/dist/src/lib/helpers/alias.js:11     - let ret = new cons();
+/home/aplet123/packs/pwnutil/dist/src/lib/tubes/ProcessTube.js:47 - return alias_1.aliasClass(ProcessTube, args);
+/home/aplet123/packs/pwnutil/test/testproc.js:5                   - const p = proc(path.join(__dirname, "delayed_print"));
+
+# PIPEWRAP
+/home/aplet123/packs/pwnutil/dist/src/lib/tubes/ProcessTube.js:30 - const proc = child_process_1.default.spawn(command, args, childOptions);
+/home/aplet123/packs/pwnutil/dist/src/lib/helpers/alias.js:11     - let ret = new cons();
+/home/aplet123/packs/pwnutil/dist/src/lib/tubes/ProcessTube.js:47 - return alias_1.aliasClass(ProcessTube, args);
+
+# PIPEWRAP
+/home/aplet123/packs/pwnutil/dist/src/lib/tubes/ProcessTube.js:30 - const proc = child_process_1.default.spawn(command, args, childOptions);
+/home/aplet123/packs/pwnutil/dist/src/lib/helpers/alias.js:11     - let ret = new cons();
+/home/aplet123/packs/pwnutil/dist/src/lib/tubes/ProcessTube.js:47 - return alias_1.aliasClass(ProcessTube, args);
+
+# PIPEWRAP
+/home/aplet123/packs/pwnutil/dist/src/lib/tubes/ProcessTube.js:30 - const proc = child_process_1.default.spawn(command, args, childOptions);
+/home/aplet123/packs/pwnutil/dist/src/lib/helpers/alias.js:11     - let ret = new cons();
+/home/aplet123/packs/pwnutil/dist/src/lib/tubes/ProcessTube.js:47 - return alias_1.aliasClass(ProcessTube, args);
+
+# Timeout
+/home/aplet123/packs/pwnutil/dist/src/lib/helpers/wait.js:20 - setTimeout(function () {
+/home/aplet123/packs/pwnutil/dist/src/lib/helpers/wait.js:12 - return new Promise((res, rej) => {
+/home/aplet123/packs/pwnutil/dist/src/lib/tubes/Tube.js:73   - await wait_1.waitForEvent(this, "data", timeout * 1000);
+
+# Timeout
+/home/aplet123/packs/pwnutil/dist/src/lib/helpers/wait.js:20 - setTimeout(function () {
+/home/aplet123/packs/pwnutil/dist/src/lib/helpers/wait.js:12 - return new Promise((res, rej) => {
+/home/aplet123/packs/pwnutil/dist/src/lib/tubes/Tube.js:73   - await wait_1.waitForEvent(this, "data", timeout * 1000);
+
+# TickObject
+(unknown stack trace)
+
+# TickObject
+(unknown stack trace)
+
+# TickObject
+(unknown stack trace)
+
+# TickObject
+(unknown stack trace)
+
+# TickObject
+/home/aplet123/packs/pwnutil/dist/src/models/Process.js:22 - outStream.destroy();
+
+# TickObject
+/home/aplet123/packs/pwnutil/dist/src/lib/util/logger.js:53 - options.location.write(logged);

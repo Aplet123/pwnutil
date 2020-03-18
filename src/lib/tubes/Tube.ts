@@ -93,10 +93,12 @@ export class Tube extends EventEmitter {
         }
         if (this.outBuffer.length == 0) {
             await waitForEvent(this, "data", timeout * 1000);
+            console.log("got some data");
         }
         let first: Buffer = this.outBuffer.slice(0, bytes);
         let second: Buffer = this.outBuffer.slice(bytes);
         this.outBuffer = second;
+        console.log("buf: " + this.outBuffer);
         return first;
     }
 
@@ -113,6 +115,20 @@ export class Tube extends EventEmitter {
         encoding: string = "utf8"
     ): Promise<string> {
         return (await this.recv(bytes, timeout)).toString(encoding);
+    }
+
+    /**
+     * Inserts data back into the data buffer.
+     * @param data Data to insert.
+     */
+    unrecv(data: Stringable): void {
+        if (typeof data == "string") {
+            data = Buffer.from(data);
+        }
+        this.outBuffer = Buffer.concat(
+            [data, this.outBuffer],
+            data.length + this.outBuffer.length
+        );
     }
 
     /**
@@ -142,48 +158,138 @@ export class Tube extends EventEmitter {
      * Receive data until a deliminator is encountered.
      * @param delims Array of deliminators or one deliminator.
      * @param timeout The time, in seconds, to stop waiting for data and to timeout.
-     * @param throwIncomplete If true, an error will be thrown on timeout. Otherwise, all data received will be returned.
+     * @param throwIncomplete If true, an error will be thrown on timeout and data will be buffered. Otherwise, all data received will be returned.
      */
-    async recvuntil(
+    recvuntil(
         delims: Stringable | Array<Stringable>,
         timeout: number = 15,
         throwIncomplete: boolean = true
-    ) {
-        if (!this.connected("in")) {
-            throw new Error("Cannot read from io object.");
-        }
-        if (!(delims instanceof Array)) {
-            delims = [delims];
-        }
-        let resolve: (v: any) => void = _ => undefined;
-        const prom: Promise<any> = new Promise(res => resolve = res);
-        waitForTime(timeout * 1000, prom, true).then(resolve);
-        const that: Tube = this;
-        function dataHandler(): void {
-            let indices: Array<[Stringable, number]> = (delims as Array<Stringable>).map(v => [v, that.outBuffer.indexOf(v)]);
-            indices = indices.filter(v => v[1] != -1).sort((a, b) => a[1] - b[1]);
-            if (indices.length != 0) {
-                console.log("resolving");
-                resolve(0);
+    ): Promise<Buffer> {
+        let that: Tube = this;
+        let prom: Promise<Buffer> = new Promise(async function(res, rej) {
+            if (!that.connected("in")) {
+                throw new Error("Cannot read from io object.");
             }
-            waitForEvent(that, "data", prom, true).then(dataHandler);
-        };
-        waitForEvent(that, "data", prom, true).then(dataHandler);
-        await waitForEvent(this, "close", prom, true);
-        let indices: Array<[Stringable, number]> = (delims as Array<Stringable>).map(v => [v, this.outBuffer.indexOf(v)]);
-        indices = indices.filter(v => v[1] != -1).sort((a, b) => a[1] - b[1]);
-        if (indices.length == 0) {
-            if (throwIncomplete) {
-                throw new Error("Did not read deliminator before io stream closed.");
+            let ret: Buffer = Buffer.alloc(0);
+            let resolve: () => void = () => undefined;
+            waitForTime(
+                timeout * 1000,
+                new Promise((res, rej) => (resolve = res))
+            ).then(v => {
+                if (throwIncomplete) {
+                    that.unrecv(ret);
+                    rej("Timeout before reaching deliminator.");
+                } else {
+                    res(ret);
+                }
+            });
+            if (!(delims instanceof Array)) {
+                delims = [delims];
+            }
+            console.log("pu " + that.outBuffer);
+            while (true) {
+                let dat: Buffer = await that.recv();
+                console.log("r " + dat);
+                ret = Buffer.concat([ret, dat], ret.length + dat.length);
+                let indices: Array<[Stringable, number]> = delims.map(v => [
+                    v,
+                    ret.indexOf(v)
+                ]);
+                indices = indices
+                    .filter(v => v[1] != -1)
+                    .sort((a, b) => a[1] - b[1]);
+                if (indices.length != 0) {
+                    const first: Buffer = ret.slice(
+                        0,
+                        indices[0][1] + indices[0][0].length
+                    );
+                    const second: Buffer = ret.slice(
+                        indices[0][1] + indices[0][0].length
+                    );
+                    console.log("x", first, second, that.outBuffer, ret);
+                    that.outBuffer = second;
+                    ret = first;
+                    break;
+                }
+                console.log("end of loop " + that.outBuffer);
+            }
+            resolve();
+            console.log("u " + that.outBuffer);
+            res(ret);
+        });
+        return prom;
+    }
+
+    /**
+     * Equivalent to `recvuntil` but decodes the buffer to a string.
+     * @param delims Array of deliminators or one deliminator.
+     * @param timeout The time, in seconds, to stop waiting for data and to timeout.
+     * @param throwIncomplete If true, an error will be thrown on timeout. Otherwise, all data received will be returned.
+     * @param encoding The encoding to use.
+     * @return The data received.
+     */
+    async recvuntilS(
+        delims: Stringable | Array<Stringable>,
+        timeout: number = 15,
+        throwIncomplete: boolean = true,
+        encoding: string = "utf8"
+    ): Promise<string> {
+        return (
+            await this.recvuntil(delims, timeout, throwIncomplete)
+        ).toString(encoding);
+    }
+
+    /**
+     * Receives a line of data.
+     * @param keepNewline If true, the newline will be kept at the end of the line.
+     * @param timeout The time, in seconds, to stop waiting for the data and to timeout.
+     * @param handleIncomplete If "return", the data received will be returned, if "buffer", the data received will be buffered and an empty buffer returned, if "throw", an error will be thrown and data will be buffered.
+     * @param lineEnding The line ending to use.
+     * @return The data received.
+     */
+    async recvline(
+        keepNewline: boolean = false,
+        timeout: number = 15,
+        handleIncomplete: "return" | "buffer" | "throw" = "return",
+        lineEnding: Stringable = "\n"
+    ): Promise<Buffer> {
+        let data: Buffer;
+        try {
+            let data: Buffer = await this.recvuntil(lineEnding, timeout, true);
+            console.log("d", data);
+            if (!keepNewline && data.slice(-lineEnding.length).equals(Buffer.from(lineEnding))) {
+                data = data.slice(0, data.length - 1);
+            }
+            return data;
+        } catch (err) {
+            console.log("oh mah gawd");
+            if (handleIncomplete == "return") {
+                return this.outBuffer;
+            } else if (handleIncomplete == "throw") {
+                throw new Error("Could not find a newline.");
             } else {
-                const ret: Buffer = this.outBuffer;
-                this.outBuffer = Buffer.alloc(0);
-                return ret;
+                return Buffer.alloc(0);
             }
-        } else {
-            const index: number = indices[0][1] + indices[0][0].length;
-            return await this.recv(index);
         }
+    }
+
+    /**
+     * Equivalent to `recvline` but decodes the buffer into a string.
+     * @param keepNewline If true, the newline will be kept at the end of the line.
+     * @param timeout The time, in seconds, to stop waiting for the data and to timeout.
+     * @param handleIncomplete If "return", the data received will be returned, if "buffer", the data received will be buffered and an empty buffer returned, if "throw", an error will be thrown and data will be buffered.
+     * @param lineEnding The line ending to use.
+     * @param encoding The encoding to use.
+     * @return The data received.
+     */
+    async recvlineS(
+        keepNewline: boolean = false,
+        timeout: number = 15,
+        handleIncomplete: "return" | "buffer" | "throw" = "return",
+        lineEnding: Stringable = "\n",
+        encoding: string = "utf8"
+    ): Promise<string> {
+        return (await this.recvline(keepNewline, timeout, handleIncomplete, lineEnding)).toString(encoding);
     }
 
     /**

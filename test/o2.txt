@@ -1,0 +1,46 @@
+waiting here
+[*] First print
+Second print
+Third print
+
+done waiting here
+There are 10 handle(s) keeping the process running
+
+# PROCESSWRAP
+/home/aplet123/packs/pwnutil/dist/src/lib/tubes/ProcessTube.js:30 - const proc = child_process_1.default.spawn(command, args, childOptions);
+/home/aplet123/packs/pwnutil/dist/src/lib/helpers/alias.js:11     - let ret = new cons();
+/home/aplet123/packs/pwnutil/dist/src/lib/tubes/ProcessTube.js:47 - return alias_1.aliasClass(ProcessTube, args);
+/home/aplet123/packs/pwnutil/test/testproc.js:5                   - const p = proc(path.join(__dirname, "delayed_print"));
+
+# PIPEWRAP
+/home/aplet123/packs/pwnutil/dist/src/lib/tubes/ProcessTube.js:30 - const proc = child_process_1.default.spawn(command, args, childOptions);
+/home/aplet123/packs/pwnutil/dist/src/lib/helpers/alias.js:11     - let ret = new cons();
+/home/aplet123/packs/pwnutil/dist/src/lib/tubes/ProcessTube.js:47 - return alias_1.aliasClass(ProcessTube, args);
+
+# PIPEWRAP
+/home/aplet123/packs/pwnutil/dist/src/lib/tubes/ProcessTube.js:30 - const proc = child_process_1.default.spawn(command, args, childOptions);
+/home/aplet123/packs/pwnutil/dist/src/lib/helpers/alias.js:11     - let ret = new cons();
+/home/aplet123/packs/pwnutil/dist/src/lib/tubes/ProcessTube.js:47 - return alias_1.aliasClass(ProcessTube, args);
+
+# PIPEWRAP
+/home/aplet123/packs/pwnutil/dist/src/lib/tubes/ProcessTube.js:30 - const proc = child_process_1.default.spawn(command, args, childOptions);
+/home/aplet123/packs/pwnutil/dist/src/lib/helpers/alias.js:11     - let ret = new cons();
+/home/aplet123/packs/pwnutil/dist/src/lib/tubes/ProcessTube.js:47 - return alias_1.aliasClass(ProcessTube, args);
+
+# TickObject
+(unknown stack trace)
+
+# TickObject
+(unknown stack trace)
+
+# TickObject
+(unknown stack trace)
+
+# TickObject
+(unknown stack trace)
+
+# TickObject
+/home/aplet123/packs/pwnutil/dist/src/models/Process.js:22 - outStream.destroy();
+
+# TickObject
+/home/aplet123/packs/pwnutil/dist/src/lib/util/logger.js:53 - options.location.write(logged);
