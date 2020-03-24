@@ -10,9 +10,10 @@
         "pretty": true,
         "lib": ["es2017", "dom"],
         "typeRoots": ["node_modules/@types", "src/types"],
-        "sourceMap": true
+        "sourceMap": true,
+        "allowJs": true
     },
-    "include": ["src/**/*.ts", "test/**/*.ts"],
+    "include": ["src/**/*.ts", "src/**/*.js", "test/**/*.ts"],
     "exclude": ["node_modules/**"],
     "compileOnSave": false
 }

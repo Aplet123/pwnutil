@@ -142,7 +142,8 @@ const LogContext: any = {
     error: true,
     warn: true,
     success: true,
-    star: true
+    star: true,
+    internal: false
 };
 
 export { LogContext };
@@ -214,14 +215,14 @@ export function logWarn(content: any, options: LogOptions): void {
 }
 
 /**
- * Logs something with bright green tag "SUCCESS" if `LogContext.success` is set.
+ * Logs something with green tag "SUCCESS" if `LogContext.success` is set.
  * @param content Content to log.
  * @param options Logging options, see `LogOptions`.
  */
 export function logSuccess(content: any, options: LogOptions): void {
     options = Object.assign({
         tag: "SUCCESS",
-        color: "greenBright"
+        color: "green"
     }, options);
     if (!LogContext.success) {
         return;
@@ -241,6 +242,22 @@ export function logStar(content: any, options: LogOptions): void {
         useToString: true
     }, options);
     if (!LogContext.star) {
+        return;
+    }
+    log(content, options);
+}
+
+/**
+ * Logs something as a string with blue tag "$" if `LogContext.internal` is set. Used as logging inside the library.
+ * @param content Content to log.
+ * @param options Logging options, see `LogOptions`.
+ */
+export function logInternal(content: any, options: LogOptions): void {
+    options = Object.assign({
+        tag: "$",
+        color: "blue"
+    }, options);
+    if (!LogContext.internal) {
         return;
     }
     log(content, options);

@@ -4,6 +4,7 @@ export * from "./lib/helpers/wait.js";
 export * from "./lib/helpers/alias.js";
 export * from "./lib/util/pad.js";
 export * from "./lib/util/logger.js";
+export * from "./lib/util/setup.js";
 export * from "./lib/tubes/ProcessTube.js";
 export * from "./lib/tubes/Tube.js";
 export * from "./models/IO.js";
