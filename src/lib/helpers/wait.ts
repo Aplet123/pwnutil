@@ -53,11 +53,11 @@ export function waitForEvent(
  * @param reject If the promise should be rejected when the `expire` promise resolves.
  * @return A promise that resolves after the time is over.
  */
-export function waitForTime(time: number, expire?: Promise<any>, reject: boolean = false): Promise<void> {
+export function waitForTime(time: number, expire?: Promise<any>, reject: boolean = false): Promise<boolean> {
     return new Promise((res, rej) => {
         let to: NodeJS.Timeout;
         to = setTimeout(function() {
-            res();
+            res(true);
         }, time);
         if (expire) {
             expire.then(v => {
@@ -65,7 +65,7 @@ export function waitForTime(time: number, expire?: Promise<any>, reject: boolean
                 if (reject) {
                     rej("Promise resolved before timer.");
                 } else {
-                    res();
+                    res(false);
                 }
             });
         }

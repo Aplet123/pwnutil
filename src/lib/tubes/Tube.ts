@@ -93,12 +93,10 @@ export class Tube extends EventEmitter {
         }
         if (this.outBuffer.length == 0) {
             await waitForEvent(this, "data", timeout * 1000);
-            console.log("got some data");
         }
         let first: Buffer = this.outBuffer.slice(0, bytes);
         let second: Buffer = this.outBuffer.slice(bytes);
         this.outBuffer = second;
-        console.log("buf: " + this.outBuffer);
         return first;
     }
 
@@ -176,6 +174,9 @@ export class Tube extends EventEmitter {
                 timeout * 1000,
                 new Promise((res, rej) => (resolve = res))
             ).then(v => {
+                if (!v) {
+                    return;
+                }
                 if (throwIncomplete) {
                     that.unrecv(ret);
                     rej("Timeout before reaching deliminator.");
@@ -186,10 +187,8 @@ export class Tube extends EventEmitter {
             if (!(delims instanceof Array)) {
                 delims = [delims];
             }
-            console.log("pu " + that.outBuffer);
             while (true) {
                 let dat: Buffer = await that.recv();
-                console.log("r " + dat);
                 ret = Buffer.concat([ret, dat], ret.length + dat.length);
                 let indices: Array<[Stringable, number]> = delims.map(v => [
                     v,
@@ -206,15 +205,12 @@ export class Tube extends EventEmitter {
                     const second: Buffer = ret.slice(
                         indices[0][1] + indices[0][0].length
                     );
-                    console.log("x", first, second, that.outBuffer, ret);
                     that.outBuffer = second;
                     ret = first;
                     break;
                 }
-                console.log("end of loop " + that.outBuffer);
             }
             resolve();
-            console.log("u " + that.outBuffer);
             res(ret);
         });
         return prom;
@@ -256,13 +252,11 @@ export class Tube extends EventEmitter {
         let data: Buffer;
         try {
             let data: Buffer = await this.recvuntil(lineEnding, timeout, true);
-            console.log("d", data);
             if (!keepNewline && data.slice(-lineEnding.length).equals(Buffer.from(lineEnding))) {
                 data = data.slice(0, data.length - 1);
             }
             return data;
         } catch (err) {
-            console.log("oh mah gawd");
             if (handleIncomplete == "return") {
                 return this.outBuffer;
             } else if (handleIncomplete == "throw") {
