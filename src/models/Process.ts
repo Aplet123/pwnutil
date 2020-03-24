@@ -56,6 +56,7 @@ export function IOFromProcess(p: Process): IOFull {
     return {
         output: outStream,
         input: p.stdin,
-        destroy: async () => p.kill()
+        destroy: async () => p.kill(),
+        orig: p
     };
 }

@@ -16,6 +16,11 @@ export interface IOAble {
      * Destroy the IO object.
      */
     destroy?: () => Promise<any>;
+
+    /**
+     * The object that the IO object was derived from.
+     */
+    orig?: any;
 }
 
 /**

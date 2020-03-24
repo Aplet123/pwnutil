@@ -82,6 +82,59 @@ export class Tube extends EventEmitter {
     }
 
     /**
+     * Connects the output of this tube to the input of another tube.
+     * @param other Tube to connect to.
+     */
+    connectOutput(other: Tube): void {
+        if (isReadable(this.io) && isWritable(other.io)) {
+            this.io.output.pipe(other.io.input);
+        } else {
+            throw new Error("Must connect a readable tube to a writable tube.");
+        }
+    }
+
+    /**
+     * Connects the output of another tube to the input of this tube.
+     * @param other Tube to connect to.
+     */
+    connectInput(other: Tube): void {
+        other.connectOutput(this);
+    }
+
+    /**
+     * Connects both ends of the tube to another tube.
+     * @param other Tube to connect to.
+     */
+    connectBoth(other: Tube): void {
+        this.connectInput(other);
+        this.connectOutput(other);
+    }
+
+    /**
+     * Alias for `connectOutput`.
+     * @param other Tube to connect to.
+     */
+    pipe(other: Tube): void {
+        this.connectOutput(other);
+    }
+
+    /**
+     * Alias for `connectInput`.
+     * @param other Tube to connect to.
+     */
+    pipeFrom(other: Tube): void {
+        this.connectInput(other);
+    }
+
+    /**
+     * Alias for `connectBoth`.
+     * @param other Tube to connect to.
+     */
+    pipeBoth(other: Tube): void {
+        this.connectBoth(other);
+    }
+
+    /**
      * Receive up to a certain number of bytes. Returns when any amount of data is received.
      * @param bytes The number of bytes to receive.
      * @param timeout The time, in seconds, to stop waiting for data and to timeout.
@@ -169,12 +222,13 @@ export class Tube extends EventEmitter {
                 throw new Error("Cannot read from io object.");
             }
             let ret: Buffer = Buffer.alloc(0);
+            let graceful: boolean = false;
             let resolve: () => void = () => undefined;
             waitForTime(
                 timeout * 1000,
-                new Promise((res, rej) => (resolve = res))
+                new Promise((resf, rejf) => (resolve = resf))
             ).then(v => {
-                if (!v) {
+                if (graceful) {
                     return;
                 }
                 if (throwIncomplete) {
@@ -188,6 +242,10 @@ export class Tube extends EventEmitter {
                 delims = [delims];
             }
             while (true) {
+                if (!that.connected("in")) {
+                    resolve();
+                    break;
+                }
                 let dat: Buffer = await that.recv();
                 ret = Buffer.concat([ret, dat], ret.length + dat.length);
                 let indices: Array<[Stringable, number]> = delims.map(v => [
@@ -207,11 +265,14 @@ export class Tube extends EventEmitter {
                     );
                     that.outBuffer = second;
                     ret = first;
+                    graceful = true;
                     break;
                 }
             }
             resolve();
-            res(ret);
+            if (graceful) {
+                res(ret);
+            }
         });
         return prom;
     }
@@ -252,7 +313,10 @@ export class Tube extends EventEmitter {
         let data: Buffer;
         try {
             let data: Buffer = await this.recvuntil(lineEnding, timeout, true);
-            if (!keepNewline && data.slice(-lineEnding.length).equals(Buffer.from(lineEnding))) {
+            if (
+                !keepNewline &&
+                data.slice(-lineEnding.length).equals(Buffer.from(lineEnding))
+            ) {
                 data = data.slice(0, data.length - 1);
             }
             return data;
@@ -283,7 +347,14 @@ export class Tube extends EventEmitter {
         lineEnding: Stringable = "\n",
         encoding: string = "utf8"
     ): Promise<string> {
-        return (await this.recvline(keepNewline, timeout, handleIncomplete, lineEnding)).toString(encoding);
+        return (
+            await this.recvline(
+                keepNewline,
+                timeout,
+                handleIncomplete,
+                lineEnding
+            )
+        ).toString(encoding);
     }
 
     /**

@@ -51,7 +51,7 @@ export function waitForEvent(
  * @param time Time in milliseconds.
  * @param expire A promise that will end the timer when it resolves.
  * @param reject If the promise should be rejected when the `expire` promise resolves.
- * @return A promise that resolves after the time is over.
+ * @return A promise that resolves with true if the time was over, or false if the promise resolved first.
  */
 export function waitForTime(time: number, expire?: Promise<any>, reject: boolean = false): Promise<boolean> {
     return new Promise((res, rej) => {

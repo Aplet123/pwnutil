@@ -4,9 +4,8 @@ const path = require("path");
 const p = proc(path.join(__dirname, "oneline"));
 async function main() {
     log("waiting here");
-    logStar(await p.recvuntil("\n"));
-    logStar(await p.recv());
-    logStar(await p.recv());
+    logStar(await p.recvlineS());
+    logStar(await p.recvline(false, 15, "return"));
     // logStar(await p.recvline(false, 5, "throw"));
     // logStar(await p.recvline(false, 5, "throw"));
     log("done waiting here");
