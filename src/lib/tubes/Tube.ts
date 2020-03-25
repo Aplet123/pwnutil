@@ -14,6 +14,60 @@ import { logInternal } from "../util/logger";
 import { createInterface, ReadLine } from "readline";
 
 /**
+ * The interface for TubeContext.
+ */
+export interface TubeContextInterface {
+    /**
+     * The default max bytes read in by functions like `recv`. 
+     */
+    bytes: number;
+    /**
+     * The default timeout used by functions like `recvuntil`.
+     */
+    longTimeout: number;
+    /**
+     * The default timeout used by functions like `clean`.
+     */
+    shortTimeout: number;
+    /**
+     * The default timeout used by functions like `canRecv`.
+     */
+    noTimeout: number;
+    /**
+     * The encoding to decode buffers with for functions like `recvS`.
+     */
+    encoding: string;
+    /**
+     * If an error should be thrown if a deliminator can't be found in a function like `recvuntil`.
+     */
+    throwIncomplete: boolean;
+    /**
+     * How no deliminator should be handled in a function like `recvline`.
+     */
+    handleIncomplete: "return" | "buffer" | "throw";
+    /**
+     * The line endings for functions like `recvline`.
+     */
+    lineEnding: Stringable;
+}
+
+/**
+ * The context for the tube functions which contains all the default arguments.
+ */
+const TubeContext: TubeContextInterface = {
+    bytes: 4096,
+    longTimeout: 15,
+    shortTimeout: 0.05,
+    noTimeout: 0,
+    encoding: "utf8",
+    throwIncomplete: true,
+    handleIncomplete: "return",
+    lineEnding: "\n"
+};
+
+export { TubeContext };
+
+/**
  * A class for interfacing with something that has i/o.
  *
  * Be aware that this class may heavily suffer from race conditions so do not attempt to use it concurrently.
@@ -142,7 +196,7 @@ export class Tube extends EventEmitter {
      * @param timeout The time, in seconds, to stop waiting for data and to timeout.
      * @return The data received.
      */
-    async recv(bytes: number = 4096, timeout: number = 15): Promise<Buffer> {
+    async recv(bytes: number = TubeContext.bytes, timeout: number = TubeContext.longTimeout): Promise<Buffer> {
         if (!this.connected("in")) {
             throw new Error("Cannot read from io object.");
         }
@@ -163,9 +217,9 @@ export class Tube extends EventEmitter {
      * @return The data received.
      */
     async recvS(
-        bytes: number = 4096,
-        timeout: number = 15,
-        encoding: string = "utf8"
+        bytes: number = TubeContext.bytes,
+        timeout: number = TubeContext.longTimeout,
+        encoding: string = TubeContext.encoding
     ): Promise<string> {
         return (await this.recv(bytes, timeout)).toString(encoding);
     }
@@ -204,7 +258,7 @@ export class Tube extends EventEmitter {
      * @param encoding The encoding to use.
      * @return The data received.
      */
-    async recvallS(encoding: string = "utf8"): Promise<string> {
+    async recvallS(encoding: string = TubeContext.encoding): Promise<string> {
         return (await this.recvall()).toString(encoding);
     }
 
@@ -216,8 +270,8 @@ export class Tube extends EventEmitter {
      */
     recvuntil(
         delims: Stringable | Array<Stringable>,
-        timeout: number = 15,
-        throwIncomplete: boolean = true
+        timeout: number = TubeContext.longTimeout,
+        throwIncomplete: boolean = TubeContext.throwIncomplete
     ): Promise<Buffer> {
         let that: Tube = this;
         let prom: Promise<Buffer> = new Promise(async function(res, rej) {
@@ -290,9 +344,9 @@ export class Tube extends EventEmitter {
      */
     async recvuntilS(
         delims: Stringable | Array<Stringable>,
-        timeout: number = 15,
-        throwIncomplete: boolean = true,
-        encoding: string = "utf8"
+        timeout: number = TubeContext.longTimeout,
+        throwIncomplete: boolean = TubeContext.throwIncomplete,
+        encoding: string = TubeContext.encoding
     ): Promise<string> {
         return (
             await this.recvuntil(delims, timeout, throwIncomplete)
@@ -301,23 +355,23 @@ export class Tube extends EventEmitter {
 
     /**
      * Receives a line of data.
-     * @param keepNewline If true, the newline will be kept at the end of the line.
+     * @param keepends If true, the line ending at the end of the line will be kept.
      * @param timeout The time, in seconds, to stop waiting for the data and to timeout.
      * @param handleIncomplete If "return", the data received will be returned, if "buffer", the data received will be buffered and an empty buffer returned, if "throw", an error will be thrown and data will be buffered.
      * @param lineEnding The line ending to use.
      * @return The data received.
      */
     async recvline(
-        keepNewline: boolean = false,
-        timeout: number = 15,
-        handleIncomplete: "return" | "buffer" | "throw" = "return",
-        lineEnding: Stringable = "\n"
+        keepends: boolean = false,
+        timeout: number = TubeContext.longTimeout,
+        handleIncomplete: "return" | "buffer" | "throw" = TubeContext.handleIncomplete,
+        lineEnding: Stringable = TubeContext.lineEnding
     ): Promise<Buffer> {
         let data: Buffer;
         try {
             let data: Buffer = await this.recvuntil(lineEnding, timeout, true);
             if (
-                !keepNewline &&
+                !keepends &&
                 data.slice(-lineEnding.length).equals(Buffer.from(lineEnding))
             ) {
                 data = data.slice(0, data.length - 1);
@@ -336,7 +390,7 @@ export class Tube extends EventEmitter {
 
     /**
      * Equivalent to `recvline` but decodes the buffer into a string.
-     * @param keepNewline If true, the newline will be kept at the end of the line.
+     * @param keepends If true, the line ending at the end of the line will be kept.
      * @param timeout The time, in seconds, to stop waiting for the data and to timeout.
      * @param handleIncomplete If "return", the data received will be returned, if "buffer", the data received will be buffered and an empty buffer returned, if "throw", an error will be thrown and data will be buffered.
      * @param lineEnding The line ending to use.
@@ -344,15 +398,15 @@ export class Tube extends EventEmitter {
      * @return The data received.
      */
     async recvlineS(
-        keepNewline: boolean = false,
-        timeout: number = 15,
-        handleIncomplete: "return" | "buffer" | "throw" = "return",
-        lineEnding: Stringable = "\n",
-        encoding: string = "utf8"
+        keepends: boolean = false,
+        timeout: number = TubeContext.longTimeout,
+        handleIncomplete: "return" | "buffer" | "throw" = TubeContext.handleIncomplete,
+        lineEnding: Stringable = TubeContext.lineEnding,
+        encoding: string = TubeContext.encoding
     ): Promise<string> {
         return (
             await this.recvline(
-                keepNewline,
+                keepends,
                 timeout,
                 handleIncomplete,
                 lineEnding
@@ -374,7 +428,7 @@ export class Tube extends EventEmitter {
      * @param timeout The time, in seconds, to wait for.
      * @return If there is data that can be received.
      */
-    async canRecv(timeout: number = 0): Promise<boolean> {
+    async canRecv(timeout: number = TubeContext.noTimeout): Promise<boolean> {
         if (this.outBuffer.length > 0) {
             return true;
         }
@@ -387,7 +441,7 @@ export class Tube extends EventEmitter {
      * @param timeout The timeout to pass to recv. If set to 0, the internal buffer will be cleared.
      * @return The data that was cleaned.
      */
-    async clean(timeout: number = 0.05): Promise<Buffer> {
+    async clean(timeout: number = TubeContext.shortTimeout): Promise<Buffer> {
         if (timeout <= 0) {
             const ret: Buffer = this.outBuffer;
             this.outBuffer = Buffer.alloc(0);

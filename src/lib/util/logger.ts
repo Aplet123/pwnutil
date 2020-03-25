@@ -134,9 +134,43 @@ export function logStderr(content: any, options: LogOptions = {}): void {
 }
 
 /**
+ * The interface for `LogContext`.
+ */
+export interface LogContextInterface {
+    /**
+     * Determines if `logDebug` should log.
+     */
+    debug: boolean;
+    /**
+     * Determines if `logInfo` should log.
+     */
+    info: boolean;
+    /**
+     * Determines if `logError` should log.
+     */
+    error: boolean;
+    /**
+     * Determines if `logWarn` should log.
+     */
+    warn: boolean;
+    /**
+     * Determines if `logSuccess` should log.
+     */
+    success: boolean;
+    /**
+     * Determines if `logStar` should log.
+     */
+    star: boolean;
+    /**
+     * Determines if `logInternal` should log.
+     */
+    internal: boolean;
+}
+
+/**
  * The context for the logging functions.
  */
-const LogContext: any = {
+const LogContext: LogContextInterface = {
     debug: true,
     info: true,
     error: true,

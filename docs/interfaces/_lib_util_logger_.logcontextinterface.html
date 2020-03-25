@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>LogOptions | pwnutil - v0.0.1</title>
+	<title>LogContextInterface | pwnutil - v0.0.1</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -59,10 +59,10 @@
 					<a href="../modules/_lib_util_logger_.html">&quot;lib/util/logger&quot;</a>
 				</li>
 				<li>
-					<a href="_lib_util_logger_.logoptions.html">LogOptions</a>
+					<a href="_lib_util_logger_.logcontextinterface.html">LogContextInterface</a>
 				</li>
 			</ul>
-			<h1>Interface LogOptions</h1>
+			<h1>Interface LogContextInterface</h1>
 		</div>
 	</div>
 </header>
@@ -72,7 +72,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Options for the logging functions.</p>
+						<p>The interface for <code>LogContext</code>.</p>
 					</div>
 				</div>
 			</section>
@@ -80,7 +80,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">LogOptions</span>
+						<span class="target">LogContextInterface</span>
 					</li>
 				</ul>
 			</section>
@@ -91,13 +91,13 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lib_util_logger_.logoptions.html#color" class="tsd-kind-icon">color</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lib_util_logger_.logoptions.html#inspectstrings" class="tsd-kind-icon">inspect<wbr>Strings</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lib_util_logger_.logoptions.html#location" class="tsd-kind-icon">location</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lib_util_logger_.logoptions.html#newline" class="tsd-kind-icon">newline</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lib_util_logger_.logoptions.html#tag" class="tsd-kind-icon">tag</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lib_util_logger_.logoptions.html#usetostring" class="tsd-kind-icon">use<wbr>ToString</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lib_util_logger_.logoptions.html#utiloptions" class="tsd-kind-icon">util<wbr>Options</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lib_util_logger_.logcontextinterface.html#debug" class="tsd-kind-icon">debug</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lib_util_logger_.logcontextinterface.html#error" class="tsd-kind-icon">error</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lib_util_logger_.logcontextinterface.html#info" class="tsd-kind-icon">info</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lib_util_logger_.logcontextinterface.html#internal" class="tsd-kind-icon">internal</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lib_util_logger_.logcontextinterface.html#star" class="tsd-kind-icon">star</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lib_util_logger_.logcontextinterface.html#success" class="tsd-kind-icon">success</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lib_util_logger_.logcontextinterface.html#warn" class="tsd-kind-icon">warn</a></li>
 							</ul>
 						</section>
 					</div>
@@ -106,115 +106,107 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="color" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> color</h3>
-					<div class="tsd-signature tsd-kind-icon">color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<a name="debug" class="tsd-anchor"></a>
+					<h3>debug</h3>
+					<div class="tsd-signature tsd-kind-icon">debug<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/81b014e/src/lib/util/logger.ts#L33">src/lib/util/logger.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/81b014e/src/lib/util/logger.ts#L143">src/lib/util/logger.ts:143</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The color to use for the tag. If a string is provided, it will use chalk&#39;s color strings.
-								Otherwise, it will treat it as a hex color.
-							Defaults to <code>&quot;white&quot;</code>.</p>
+							<p>Determines if <code>logDebug</code> should log.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="inspectstrings" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> inspect<wbr>Strings</h3>
-					<div class="tsd-signature tsd-kind-icon">inspect<wbr>Strings<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
+					<a name="error" class="tsd-anchor"></a>
+					<h3>error</h3>
+					<div class="tsd-signature tsd-kind-icon">error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/81b014e/src/lib/util/logger.ts#L51">src/lib/util/logger.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/81b014e/src/lib/util/logger.ts#L151">src/lib/util/logger.ts:151</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>If true, strings will also have <code>util.inspect</code> called on them.
-							Defaults to <code>false</code>.</p>
+							<p>Determines if <code>logError</code> should log.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="location" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> location</h3>
-					<div class="tsd-signature tsd-kind-icon">location<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Writable</span></div>
+					<a name="info" class="tsd-anchor"></a>
+					<h3>info</h3>
+					<div class="tsd-signature tsd-kind-icon">info<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/81b014e/src/lib/util/logger.ts#L39">src/lib/util/logger.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/81b014e/src/lib/util/logger.ts#L147">src/lib/util/logger.ts:147</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The writable stream to print to.
-							Defaults to <code>process.stdout</code>.</p>
+							<p>Determines if <code>logInfo</code> should log.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="newline" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> newline</h3>
-					<div class="tsd-signature tsd-kind-icon">newline<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
+					<a name="internal" class="tsd-anchor"></a>
+					<h3>internal</h3>
+					<div class="tsd-signature tsd-kind-icon">internal<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/81b014e/src/lib/util/logger.ts#L45">src/lib/util/logger.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/81b014e/src/lib/util/logger.ts#L167">src/lib/util/logger.ts:167</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>If true, appends a newline to the end.
-							Defaults to <code>true</code>.</p>
+							<p>Determines if <code>logInternal</code> should log.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="tag" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> tag</h3>
-					<div class="tsd-signature tsd-kind-icon">tag<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<a name="star" class="tsd-anchor"></a>
+					<h3>star</h3>
+					<div class="tsd-signature tsd-kind-icon">star<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/81b014e/src/lib/util/logger.ts#L26">src/lib/util/logger.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/81b014e/src/lib/util/logger.ts#L163">src/lib/util/logger.ts:163</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The tag used to prefix the log.
-							Defaults to <code>&quot;&quot;</code>.</p>
+							<p>Determines if <code>logStar</code> should log.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="usetostring" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> use<wbr>ToString</h3>
-					<div class="tsd-signature tsd-kind-icon">use<wbr>ToString<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
+					<a name="success" class="tsd-anchor"></a>
+					<h3>success</h3>
+					<div class="tsd-signature tsd-kind-icon">success<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/81b014e/src/lib/util/logger.ts#L14">src/lib/util/logger.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/81b014e/src/lib/util/logger.ts#L159">src/lib/util/logger.ts:159</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>If true, logging uses <code>.toString()</code> to convert to a string, otherwise, <code>util.inspect()</code> is used.
-							Defaults to <code>false</code>.</p>
+							<p>Determines if <code>logSuccess</code> should log.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="utiloptions" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> util<wbr>Options</h3>
-					<div class="tsd-signature tsd-kind-icon">util<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">InspectOptions</span></div>
+					<a name="warn" class="tsd-anchor"></a>
+					<h3>warn</h3>
+					<div class="tsd-signature tsd-kind-icon">warn<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/81b014e/src/lib/util/logger.ts#L20">src/lib/util/logger.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/81b014e/src/lib/util/logger.ts#L155">src/lib/util/logger.ts:155</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Options to pass to <code>util.inspect</code>.
-							Defaults to <code>{}</code>.</p>
+							<p>Determines if <code>logWarn</code> should log.</p>
 						</div>
 					</div>
 				</section>
@@ -263,39 +255,39 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_lib_util_logger_.logcontextinterface.html" class="tsd-kind-icon">Log<wbr>Context<wbr>Interface</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="_lib_util_logger_.logoptions.html" class="tsd-kind-icon">Log<wbr>Options</a>
+						<a href="_lib_util_logger_.logcontextinterface.html" class="tsd-kind-icon">Log<wbr>Context<wbr>Interface</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_lib_util_logger_.logoptions.html#color" class="tsd-kind-icon">color</a>
+								<a href="_lib_util_logger_.logcontextinterface.html#debug" class="tsd-kind-icon">debug</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_lib_util_logger_.logoptions.html#inspectstrings" class="tsd-kind-icon">inspect<wbr>Strings</a>
+								<a href="_lib_util_logger_.logcontextinterface.html#error" class="tsd-kind-icon">error</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_lib_util_logger_.logoptions.html#location" class="tsd-kind-icon">location</a>
+								<a href="_lib_util_logger_.logcontextinterface.html#info" class="tsd-kind-icon">info</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_lib_util_logger_.logoptions.html#newline" class="tsd-kind-icon">newline</a>
+								<a href="_lib_util_logger_.logcontextinterface.html#internal" class="tsd-kind-icon">internal</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_lib_util_logger_.logoptions.html#tag" class="tsd-kind-icon">tag</a>
+								<a href="_lib_util_logger_.logcontextinterface.html#star" class="tsd-kind-icon">star</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_lib_util_logger_.logoptions.html#usetostring" class="tsd-kind-icon">use<wbr>ToString</a>
+								<a href="_lib_util_logger_.logcontextinterface.html#success" class="tsd-kind-icon">success</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_lib_util_logger_.logoptions.html#utiloptions" class="tsd-kind-icon">util<wbr>Options</a>
+								<a href="_lib_util_logger_.logcontextinterface.html#warn" class="tsd-kind-icon">warn</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_lib_util_logger_.logoptions.html" class="tsd-kind-icon">Log<wbr>Options</a>
+					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="../modules/_lib_util_logger_.html#log" class="tsd-kind-icon">log</a>
 					</li>
