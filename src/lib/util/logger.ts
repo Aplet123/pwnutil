@@ -56,7 +56,7 @@ export interface LogOptions {
  * @param content Content to log.
  * @param options Logging options, see `LogOptions`.
  */
-export function log(content: any, options: LogOptions): void {
+export function log(content: any, options: LogOptions = {}): void {
     options = Object.assign({
         useToString: false,
         utilOptions: {},
@@ -96,7 +96,7 @@ export function log(content: any, options: LogOptions): void {
  * @param content Content to log.
  * @param options Logging options, see `LogOptions`.
  */
-export function logNoLine(content: any, options: LogOptions): void {
+export function logNoLine(content: any, options: LogOptions = {}): void {
     options = Object.assign({
         newline: false
     }, options);
@@ -111,7 +111,7 @@ export function logNoLine(content: any, options: LogOptions): void {
  * @param content Content to log.
  * @param options Logging options, see `LogOptions`.
  */
-export function logAsString(content: any, options: LogOptions): void {
+export function logAsString(content: any, options: LogOptions = {}): void {
     options = Object.assign({
         useToString: true
     }, options);
@@ -123,7 +123,7 @@ export function logAsString(content: any, options: LogOptions): void {
  * @param content Content to log.
  * @param options Logging options, see `LogOptions`.
  */
-export function logStderr(content: any, options: LogOptions): void {
+export function logStderr(content: any, options: LogOptions = {}): void {
     options = Object.assign({
         location: process.stderr
     }, options);
@@ -153,7 +153,7 @@ export { LogContext };
  * @param content Content to log.
  * @param options Logging options, see `LogOptions`.
  */
-export function logDebug(content: any, options: LogOptions): void {
+export function logDebug(content: any, options: LogOptions = {}): void {
     options = Object.assign({
         tag: "DEBUG",
         color: "cyan"
@@ -169,7 +169,7 @@ export function logDebug(content: any, options: LogOptions): void {
  * @param content Content to log.
  * @param options Logging options, see `LogOptions`.
  */
-export function logInfo(content: any, options: LogOptions): void {
+export function logInfo(content: any, options: LogOptions = {}): void {
     options = Object.assign({
         tag: "INFO",
         color: "blue"
@@ -185,7 +185,7 @@ export function logInfo(content: any, options: LogOptions): void {
  * @param content Content to log.
  * @param options Logging options, see `LogOptions`.
  */
-export function logError(content: any, options: LogOptions): void {
+export function logError(content: any, options: LogOptions = {}): void {
     options = Object.assign({
         tag: "ERROR",
         color: "red",
@@ -202,7 +202,7 @@ export function logError(content: any, options: LogOptions): void {
  * @param content Content to log.
  * @param options Logging options, see `LogOptions`.
  */
-export function logWarn(content: any, options: LogOptions): void {
+export function logWarn(content: any, options: LogOptions = {}): void {
     options = Object.assign({
         tag: "WARN",
         color: "yellow",
@@ -219,7 +219,7 @@ export function logWarn(content: any, options: LogOptions): void {
  * @param content Content to log.
  * @param options Logging options, see `LogOptions`.
  */
-export function logSuccess(content: any, options: LogOptions): void {
+export function logSuccess(content: any, options: LogOptions = {}): void {
     options = Object.assign({
         tag: "SUCCESS",
         color: "green"
@@ -235,7 +235,7 @@ export function logSuccess(content: any, options: LogOptions): void {
  * @param content Content to log.
  * @param options Logging options, see `LogOptions`.
  */
-export function logStar(content: any, options: LogOptions): void {
+export function logStar(content: any, options: LogOptions = {}): void {
     options = Object.assign({
         tag: "*",
         color: "magenta",
@@ -252,7 +252,7 @@ export function logStar(content: any, options: LogOptions): void {
  * @param content Content to log.
  * @param options Logging options, see `LogOptions`.
  */
-export function logInternal(content: any, options: LogOptions): void {
+export function logInternal(content: any, options: LogOptions = {}): void {
     options = Object.assign({
         tag: "$",
         color: "blue"

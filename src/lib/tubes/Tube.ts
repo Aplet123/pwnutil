@@ -10,6 +10,8 @@ import {
 import { EventEmitter } from "events";
 import { waitForEvent, waitForTime } from "../helpers/wait";
 import { Stringable } from "../../models/Stringable";
+import { logInternal } from "../util/logger";
+import { createInterface, ReadLine } from "readline";
 
 /**
  * A class for interfacing with something that has i/o.
@@ -190,6 +192,7 @@ export class Tube extends EventEmitter {
         if (!this.connected("in")) {
             throw new Error("Cannot read from io object.");
         }
+        logInternal("Receiving all data...");
         await waitForEvent((this.io as IOReadable).output, "close", -1);
         const ret: Buffer = this.outBuffer;
         this.outBuffer = Buffer.alloc(0);
@@ -358,11 +361,23 @@ export class Tube extends EventEmitter {
     }
 
     /**
-     * Returns true if there is data that can be received.
+     * Creates an interactive shell to read from and write to the tube.
+     * 
+     * Currently does nothing.
+     */
+    async interactive(): Promise<void> {
+        // stub
+    }
+
+    /**
+     * Returns true if there is data that can be received within a timeout.
      * @param timeout The time, in seconds, to wait for.
      * @return If there is data that can be received.
      */
     async canRecv(timeout: number = 0): Promise<boolean> {
+        if (this.outBuffer.length > 0) {
+            return true;
+        }
         await waitForEvent(this, "data", Math.max(timeout * 1000, 0));
         return this.outBuffer.length > 0;
     }
