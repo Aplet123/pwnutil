@@ -2,14 +2,14 @@ import fs from "fs";
 import path from "path";
 
 
-function traverse(dir: fs.Dir, parentPath: string = __dirname): Array<any> {
+function traverse(dir: fs.Dir, parentPath: string = __dirname): any[] {
     let file: string = "";
     let dirent: fs.Dirent;
     let ret: Object = {};
     while (dirent = dir.readSync()) {
         const newPath: string = path.join(parentPath, dirent.name);
         if (dirent.isDirectory()) {
-            const pair: Array<any> = traverse(fs.opendirSync(newPath), newPath);
+            const pair: any[] = traverse(fs.opendirSync(newPath), newPath);
             file += pair[0];
             Object.assign(ret, pair[1]);
         } else {
@@ -25,5 +25,5 @@ function traverse(dir: fs.Dir, parentPath: string = __dirname): Array<any> {
     return [file, ret];
 }
 
-const pair: Array<any> = traverse(fs.opendirSync(__dirname), __dirname);
+const pair: any[] = traverse(fs.opendirSync(__dirname), __dirname);
 console.log(pair[0]);

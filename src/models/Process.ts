@@ -32,11 +32,11 @@ export interface Process extends EventEmitter {
  */
 export function IOFromProcess(p: Process): IOFull {
     let outStream: Duplex = new PassThrough();
-    let streams: Array<Readable> = [p.stdout];
+    let streams: Readable[] = [p.stdout];
     if (p.stderr) {
         streams.push(p.stderr);
     }
-    let unfinished: Array<Readable> = streams;
+    let unfinished: Readable[] = streams;
     function decrement(this: Readable) {
         let index: number = unfinished.indexOf(this);
         if (index != -1) {

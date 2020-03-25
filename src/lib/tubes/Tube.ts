@@ -18,7 +18,7 @@ import { createInterface, ReadLine } from "readline";
  */
 export interface TubeContextInterface {
     /**
-     * The default max bytes read in by functions like `recv`. 
+     * The default max bytes read in by functions like `recv`.
      */
     bytes: number;
     /**
@@ -196,7 +196,10 @@ export class Tube extends EventEmitter {
      * @param timeout The time, in seconds, to stop waiting for data and to timeout.
      * @return The data received.
      */
-    async recv(bytes: number = TubeContext.bytes, timeout: number = TubeContext.longTimeout): Promise<Buffer> {
+    async recv(
+        bytes: number = TubeContext.bytes,
+        timeout: number = TubeContext.longTimeout
+    ): Promise<Buffer> {
         if (!this.connected("in")) {
             throw new Error("Cannot read from io object.");
         }
@@ -269,7 +272,7 @@ export class Tube extends EventEmitter {
      * @param throwIncomplete If true, an error will be thrown on timeout and data will be buffered. Otherwise, all data received will be returned.
      */
     recvuntil(
-        delims: Stringable | Array<Stringable>,
+        delims: Stringable | Stringable[],
         timeout: number = TubeContext.longTimeout,
         throwIncomplete: boolean = TubeContext.throwIncomplete
     ): Promise<Buffer> {
@@ -305,7 +308,7 @@ export class Tube extends EventEmitter {
                 }
                 let dat: Buffer = await that.recv();
                 ret = Buffer.concat([ret, dat], ret.length + dat.length);
-                let indices: Array<[Stringable, number]> = delims.map(v => [
+                let indices: [Stringable, number][] = delims.map(v => [
                     v,
                     ret.indexOf(v)
                 ]);
@@ -343,7 +346,7 @@ export class Tube extends EventEmitter {
      * @return The data received.
      */
     async recvuntilS(
-        delims: Stringable | Array<Stringable>,
+        delims: Stringable | Stringable[],
         timeout: number = TubeContext.longTimeout,
         throwIncomplete: boolean = TubeContext.throwIncomplete,
         encoding: string = TubeContext.encoding
@@ -364,7 +367,10 @@ export class Tube extends EventEmitter {
     async recvline(
         keepends: boolean = false,
         timeout: number = TubeContext.longTimeout,
-        handleIncomplete: "return" | "buffer" | "throw" = TubeContext.handleIncomplete,
+        handleIncomplete:
+            | "return"
+            | "buffer"
+            | "throw" = TubeContext.handleIncomplete,
         lineEnding: Stringable = TubeContext.lineEnding
     ): Promise<Buffer> {
         let data: Buffer;
@@ -400,23 +406,21 @@ export class Tube extends EventEmitter {
     async recvlineS(
         keepends: boolean = false,
         timeout: number = TubeContext.longTimeout,
-        handleIncomplete: "return" | "buffer" | "throw" = TubeContext.handleIncomplete,
+        handleIncomplete:
+            | "return"
+            | "buffer"
+            | "throw" = TubeContext.handleIncomplete,
         lineEnding: Stringable = TubeContext.lineEnding,
         encoding: string = TubeContext.encoding
     ): Promise<string> {
         return (
-            await this.recvline(
-                keepends,
-                timeout,
-                handleIncomplete,
-                lineEnding
-            )
+            await this.recvline(keepends, timeout, handleIncomplete, lineEnding)
         ).toString(encoding);
     }
 
     /**
      * Creates an interactive shell to read from and write to the tube.
-     * 
+     *
      * Currently does nothing.
      */
     async interactive(): Promise<void> {
@@ -453,6 +457,18 @@ export class Tube extends EventEmitter {
             ret = Buffer.concat([ret, data], ret.length + data.length);
         }
         return ret;
+    }
+
+    /**
+     * Equivalent to `clean` but decodes the buffer into a string.
+     * @param timeout The timeout to pass to recv. If set to 0, the internal buffer will be cleared.
+     * @param encoding The data that was cleaned.
+     */
+    async cleanS(
+        timeout: number = TubeContext.shortTimeout,
+        encoding: string = TubeContext.encoding
+    ): Promise<string> {
+        return (await this.clean(timeout)).toString(encoding);
     }
 
     /**

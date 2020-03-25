@@ -4,7 +4,7 @@
  * @param args Any arguments to pass to the constructor.
  * @return An instance of the class with the arguments provided.
  */
-export function aliasClass(cls: any, args: IArguments | Array<any>): any {
+export function aliasClass(cls: any, args: IArguments | any[]): any {
     let cons: any = Function.prototype.bind.apply(cls, [cls, ...args]);
     let ret: any = new cons();
     return ret;

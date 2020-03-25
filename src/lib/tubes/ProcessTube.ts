@@ -30,7 +30,7 @@ export class ProcessTube extends Tube {
      */
     constructor(
         command: string,
-        args: Array<string> = [],
+        args: string[] = [],
         options: ProcessTubeOptions = {},
         childOptions: child_process.SpawnOptions = {}
     ) {
@@ -64,6 +64,6 @@ export class ProcessTube extends Tube {
  * @param args Any arguments to pass on to ProcessTube.
  * @return A ProcessTube instance.
  */
-export function proc(...args: Array<any>) {
+export function proc(...args: any[]) {
     return aliasClass(ProcessTube, args);
 }
