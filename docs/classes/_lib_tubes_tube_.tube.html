@@ -152,6 +152,8 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_lib_tubes_tube_.tube.html#recvuntils" class="tsd-kind-icon">recvuntilS</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_lib_tubes_tube_.tube.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_lib_tubes_tube_.tube.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_lib_tubes_tube_.tube.html#send" class="tsd-kind-icon">send</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_lib_tubes_tube_.tube.html#sendafter" class="tsd-kind-icon">sendafter</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_lib_tubes_tube_.tube.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_lib_tubes_tube_.tube.html#unrecv" class="tsd-kind-icon">unrecv</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="_lib_tubes_tube_.tube.html#listenercount-1" class="tsd-kind-icon">listener<wbr>Count</a></li>
@@ -173,7 +175,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="../interfaces/_models_process_.process.html">Process</a>.<a href="../interfaces/_models_process_.process.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L90">src/lib/tubes/Tube.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L90">src/lib/tubes/Tube.ts:90</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -205,7 +207,7 @@
 					<div class="tsd-signature tsd-kind-icon">io<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_models_io_.ioable.html" class="tsd-signature-type">IOAble</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L86">src/lib/tubes/Tube.ts:86</a></li>
+							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L86">src/lib/tubes/Tube.ts:86</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -220,7 +222,7 @@
 					<div class="tsd-signature tsd-kind-icon">out<wbr>Buffer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Buffer</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L90">src/lib/tubes/Tube.ts:90</a></li>
+							<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L90">src/lib/tubes/Tube.ts:90</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -298,7 +300,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L543">src/lib/tubes/Tube.ts:543</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L580">src/lib/tubes/Tube.ts:580</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -330,7 +332,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L556">src/lib/tubes/Tube.ts:556</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L593">src/lib/tubes/Tube.ts:593</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -356,13 +358,13 @@
 					<a name="cleans" class="tsd-anchor"></a>
 					<h3>cleanS</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">cleanS<span class="tsd-signature-symbol">(</span>timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, encoding<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">cleanS<span class="tsd-signature-symbol">(</span>timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, encoding<span class="tsd-signature-symbol">?: </span><a href="../modules/_models_encoding_.html#encoding" class="tsd-signature-type">Encoding</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L578">src/lib/tubes/Tube.ts:578</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L615">src/lib/tubes/Tube.ts:615</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -379,7 +381,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> encoding: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = TubeContext.encoding</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> encoding: <a href="../modules/_models_encoding_.html#encoding" class="tsd-signature-type">Encoding</a><span class="tsd-signature-symbol"> = TubeContext.encoding</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The data that was cleaned.</p>
 									</div>
@@ -399,7 +401,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L588">src/lib/tubes/Tube.ts:588</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L625">src/lib/tubes/Tube.ts:625</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -421,7 +423,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L171">src/lib/tubes/Tube.ts:171</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L182">src/lib/tubes/Tube.ts:182</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -452,7 +454,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L163">src/lib/tubes/Tube.ts:163</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L174">src/lib/tubes/Tube.ts:174</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -483,7 +485,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L151">src/lib/tubes/Tube.ts:151</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L162">src/lib/tubes/Tube.ts:162</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -508,13 +510,13 @@
 					<a name="connected" class="tsd-anchor"></a>
 					<h3>connected</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">connected<span class="tsd-signature-symbol">(</span>direction<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">connected<span class="tsd-signature-symbol">(</span>direction<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">"in"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"read"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"recv"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"out"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"send"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"write"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"any"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"either"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"both"</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L125">src/lib/tubes/Tube.ts:125</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L125">src/lib/tubes/Tube.ts:125</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -525,9 +527,9 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>direction: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> direction: <span class="tsd-signature-type">"in"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"read"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"recv"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"out"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"send"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"write"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"any"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"either"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"both"</span><span class="tsd-signature-symbol"> = &quot;either&quot;</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Direction to check. Can be &quot;in&quot;, &quot;read&quot;, &quot;recv&quot;, &quot;out&quot;, &quot;send&quot;, &quot;write&quot;, &quot;any&quot;, &quot;either&quot;, &quot;both&quot;.</p>
+										<p>Direction to check.</p>
 									</div>
 								</li>
 							</ul>
@@ -609,7 +611,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L534">src/lib/tubes/Tube.ts:534</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L571">src/lib/tubes/Tube.ts:571</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -815,7 +817,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L180">src/lib/tubes/Tube.ts:180</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L191">src/lib/tubes/Tube.ts:191</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -846,7 +848,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L196">src/lib/tubes/Tube.ts:196</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L207">src/lib/tubes/Tube.ts:207</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -877,7 +879,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L188">src/lib/tubes/Tube.ts:188</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L199">src/lib/tubes/Tube.ts:199</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1022,7 +1024,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L206">src/lib/tubes/Tube.ts:206</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L217">src/lib/tubes/Tube.ts:217</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1054,13 +1056,13 @@
 					<a name="recvs" class="tsd-anchor"></a>
 					<h3>recvS</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">recvS<span class="tsd-signature-symbol">(</span>bytes<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, encoding<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">recvS<span class="tsd-signature-symbol">(</span>bytes<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, encoding<span class="tsd-signature-symbol">?: </span><a href="../modules/_models_encoding_.html#encoding" class="tsd-signature-type">Encoding</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L229">src/lib/tubes/Tube.ts:229</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L240">src/lib/tubes/Tube.ts:240</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1083,7 +1085,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> encoding: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = TubeContext.encoding</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> encoding: <a href="../modules/_models_encoding_.html#encoding" class="tsd-signature-type">Encoding</a><span class="tsd-signature-symbol"> = TubeContext.encoding</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The encoding to use.</p>
 									</div>
@@ -1104,7 +1106,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L255">src/lib/tubes/Tube.ts:255</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L266">src/lib/tubes/Tube.ts:266</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1121,13 +1123,13 @@
 					<a name="recvalls" class="tsd-anchor"></a>
 					<h3>recvallS</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">recvallS<span class="tsd-signature-symbol">(</span>encoding<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">recvallS<span class="tsd-signature-symbol">(</span>encoding<span class="tsd-signature-symbol">?: </span><a href="../modules/_models_encoding_.html#encoding" class="tsd-signature-type">Encoding</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L271">src/lib/tubes/Tube.ts:271</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L282">src/lib/tubes/Tube.ts:282</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1138,7 +1140,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> encoding: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = TubeContext.encoding</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> encoding: <a href="../modules/_models_encoding_.html#encoding" class="tsd-signature-type">Encoding</a><span class="tsd-signature-symbol"> = TubeContext.encoding</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The encoding to use.</p>
 									</div>
@@ -1159,7 +1161,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L385">src/lib/tubes/Tube.ts:385</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L396">src/lib/tubes/Tube.ts:396</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1203,13 +1205,13 @@
 					<a name="recvlinepred" class="tsd-anchor"></a>
 					<h3>recvline<wbr>Pred</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">recvline<wbr>Pred<span class="tsd-signature-symbol">(</span>pred<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>buf<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, str<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">boolean</span>, keepends<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, handleIncomplete<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">"return"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"buffer"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"throw"</span>, lineEnding<span class="tsd-signature-symbol">?: </span><a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a>, predEncoding<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">recvline<wbr>Pred<span class="tsd-signature-symbol">(</span>pred<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>buf<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, str<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">boolean</span>, keepends<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, handleIncomplete<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">"return"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"buffer"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"throw"</span>, lineEnding<span class="tsd-signature-symbol">?: </span><a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a>, predEncoding<span class="tsd-signature-symbol">?: </span><a href="../modules/_models_encoding_.html#encoding" class="tsd-signature-type">Encoding</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L455">src/lib/tubes/Tube.ts:455</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L466">src/lib/tubes/Tube.ts:466</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1271,7 +1273,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> predEncoding: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = TubeContext.encoding</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> predEncoding: <a href="../modules/_models_encoding_.html#encoding" class="tsd-signature-type">Encoding</a><span class="tsd-signature-symbol"> = TubeContext.encoding</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The encoding to use to decode the buffer to pass to the predicate function.</p>
 									</div>
@@ -1286,13 +1288,13 @@
 					<a name="recvlinepreds" class="tsd-anchor"></a>
 					<h3>recvline<wbr>PredS</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">recvline<wbr>PredS<span class="tsd-signature-symbol">(</span>pred<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>buf<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, str<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">boolean</span>, keepends<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, handleIncomplete<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">"return"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"buffer"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"throw"</span>, lineEnding<span class="tsd-signature-symbol">?: </span><a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a>, predEncoding<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, encoding<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">recvline<wbr>PredS<span class="tsd-signature-symbol">(</span>pred<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>buf<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, str<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">boolean</span>, keepends<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, handleIncomplete<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">"return"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"buffer"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"throw"</span>, lineEnding<span class="tsd-signature-symbol">?: </span><a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a>, predEncoding<span class="tsd-signature-symbol">?: </span><a href="../modules/_models_encoding_.html#encoding" class="tsd-signature-type">Encoding</a>, encoding<span class="tsd-signature-symbol">?: </span><a href="../modules/_models_encoding_.html#encoding" class="tsd-signature-type">Encoding</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L514">src/lib/tubes/Tube.ts:514</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L542">src/lib/tubes/Tube.ts:542</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1354,13 +1356,13 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> predEncoding: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = TubeContext.encoding</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> predEncoding: <a href="../modules/_models_encoding_.html#encoding" class="tsd-signature-type">Encoding</a><span class="tsd-signature-symbol"> = TubeContext.encoding</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The encoding to use to decode the buffer to pass to the predicate function.</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> encoding: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = TubeContext.encoding</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> encoding: <a href="../modules/_models_encoding_.html#encoding" class="tsd-signature-type">Encoding</a><span class="tsd-signature-symbol"> = TubeContext.encoding</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The encoding to use.</p>
 									</div>
@@ -1375,13 +1377,13 @@
 					<a name="recvlines" class="tsd-anchor"></a>
 					<h3>recvlineS</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">recvlineS<span class="tsd-signature-symbol">(</span>keepends<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, handleIncomplete<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">"return"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"buffer"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"throw"</span>, lineEnding<span class="tsd-signature-symbol">?: </span><a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a>, encoding<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">recvlineS<span class="tsd-signature-symbol">(</span>keepends<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, handleIncomplete<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">"return"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"buffer"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"throw"</span>, lineEnding<span class="tsd-signature-symbol">?: </span><a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a>, encoding<span class="tsd-signature-symbol">?: </span><a href="../modules/_models_encoding_.html#encoding" class="tsd-signature-type">Encoding</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L430">src/lib/tubes/Tube.ts:430</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L441">src/lib/tubes/Tube.ts:441</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1416,7 +1418,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> encoding: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = TubeContext.encoding</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> encoding: <a href="../modules/_models_encoding_.html#encoding" class="tsd-signature-type">Encoding</a><span class="tsd-signature-symbol"> = TubeContext.encoding</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The encoding to use.</p>
 									</div>
@@ -1437,7 +1439,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L282">src/lib/tubes/Tube.ts:282</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L293">src/lib/tubes/Tube.ts:293</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1472,13 +1474,13 @@
 					<a name="recvuntils" class="tsd-anchor"></a>
 					<h3>recvuntilS</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">recvuntilS<span class="tsd-signature-symbol">(</span>delims<span class="tsd-signature-symbol">: </span><a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a><span class="tsd-signature-symbol"> | </span><a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a><span class="tsd-signature-symbol">[]</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, handleIncomplete<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">"return"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"buffer"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"throw"</span>, encoding<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">recvuntilS<span class="tsd-signature-symbol">(</span>delims<span class="tsd-signature-symbol">: </span><a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a><span class="tsd-signature-symbol"> | </span><a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a><span class="tsd-signature-symbol">[]</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, handleIncomplete<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">"return"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"buffer"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"throw"</span>, encoding<span class="tsd-signature-symbol">?: </span><a href="../modules/_models_encoding_.html#encoding" class="tsd-signature-type">Encoding</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L363">src/lib/tubes/Tube.ts:363</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L374">src/lib/tubes/Tube.ts:374</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1504,7 +1506,7 @@
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> handleIncomplete: <span class="tsd-signature-type">"return"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"buffer"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"throw"</span><span class="tsd-signature-symbol"> = TubeContext.handleIncomplete</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> encoding: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = TubeContext.encoding</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> encoding: <a href="../modules/_models_encoding_.html#encoding" class="tsd-signature-type">Encoding</a><span class="tsd-signature-symbol"> = TubeContext.encoding</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The encoding to use.</p>
 									</div>
@@ -1584,6 +1586,100 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="send" class="tsd-anchor"></a>
+					<h3>send</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">send<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a>, encoding<span class="tsd-signature-symbol">?: </span><a href="../modules/_models_encoding_.html#encoding" class="tsd-signature-type">Encoding</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L638">src/lib/tubes/Tube.ts:638</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sends data to the tube.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>data: <a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Data to send.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> encoding: <a href="../modules/_models_encoding_.html#encoding" class="tsd-signature-type">Encoding</a><span class="tsd-signature-symbol"> = TubeContext.encoding</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The encoding to use.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a></h4>
+							<p>The data sent, as a buffer.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="sendafter" class="tsd-anchor"></a>
+					<h3>sendafter</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">sendafter<span class="tsd-signature-symbol">(</span>delims<span class="tsd-signature-symbol">: </span><a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a><span class="tsd-signature-symbol"> | </span><a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a><span class="tsd-signature-symbol">[]</span>, data<span class="tsd-signature-symbol">: </span><a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, handleIncomplete<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">"return"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"buffer"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"throw"</span>, encoding<span class="tsd-signature-symbol">?: </span><a href="../modules/_models_encoding_.html#encoding" class="tsd-signature-type">Encoding</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L661">src/lib/tubes/Tube.ts:661</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sends data to the tube after a deliminator is reached.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>delims: <a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a><span class="tsd-signature-symbol"> | </span><a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Array of deliminators or one deliminator.</p>
+									</div>
+								</li>
+								<li>
+									<h5>data: <a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Data to send.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> timeout: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = TubeContext.longTimeout</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The time, in seconds, to stop waiting for data and to timeout.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> handleIncomplete: <span class="tsd-signature-type">"return"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"buffer"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"throw"</span><span class="tsd-signature-symbol"> = TubeContext.handleIncomplete</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If &quot;return&quot;, the data received will be returned, if &quot;buffer&quot;, the data received will be buffered and an empty buffer returned, if &quot;throw&quot;, an error will be thrown and data will be buffered.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> encoding: <a href="../modules/_models_encoding_.html#encoding" class="tsd-signature-type">Encoding</a><span class="tsd-signature-symbol"> = TubeContext.encoding</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The encoding to use.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_models_stringable_.html#stringable" class="tsd-signature-type">Stringable</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>The data received to the deliminator.</p>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="setmaxlisteners" class="tsd-anchor"></a>
 					<h3>set<wbr>Max<wbr>Listeners</h3>
@@ -1618,7 +1714,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/4fa9715/src/lib/tubes/Tube.ts#L241">src/lib/tubes/Tube.ts:241</a></li>
+									<li>Defined in <a href="https://github.com/Aplet123/pwnutil/blob/257f8e8/src/lib/tubes/Tube.ts#L252">src/lib/tubes/Tube.ts:252</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1704,6 +1800,9 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/_lib_util_setup_.html">&quot;lib/util/setup&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_models_encoding_.html">&quot;models/<wbr>Encoding&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/_models_io_.html">&quot;models/IO&quot;</a>
@@ -1842,6 +1941,12 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_lib_tubes_tube_.tube.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_lib_tubes_tube_.tube.html#send" class="tsd-kind-icon">send</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_lib_tubes_tube_.tube.html#sendafter" class="tsd-kind-icon">sendafter</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_lib_tubes_tube_.tube.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a>

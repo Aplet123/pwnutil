@@ -11,7 +11,7 @@ import { EventEmitter } from "events";
 import { waitForEvent, waitForTime } from "../helpers/wait";
 import { Stringable } from "../../models/Stringable";
 import { logInternal } from "../util/logger";
-import { createInterface, ReadLine } from "readline";
+import { Encoding } from "../../models/Encoding";
 
 /**
  * The interface for TubeContext.
@@ -36,7 +36,7 @@ export interface TubeContextInterface {
     /**
      * The encoding to decode buffers with for functions like `recvS`.
      */
-    encoding: string;
+    encoding: Encoding;
     /**
      * If an error should be thrown if a deliminator can't be found in a function like `recvuntil`.
      */
@@ -119,10 +119,21 @@ export class Tube extends EventEmitter {
 
     /**
      * Checks if the io object is connected in a direction.
-     * @param direction Direction to check. Can be "in", "read", "recv", "out", "send", "write", "any", "either", "both".
+     * @param direction Direction to check.
      * @return If the io object is connected in the specified direction.
      */
-    connected(direction: string): boolean {
+    connected(
+        direction:
+            | "in"
+            | "read"
+            | "recv"
+            | "out"
+            | "send"
+            | "write"
+            | "any"
+            | "either"
+            | "both" = "either"
+    ): boolean {
         if (["in", "read", "recv"].includes(direction)) {
             if (isReadable(this.io) || this.outBuffer.length > 0) {
                 return true;
@@ -229,7 +240,7 @@ export class Tube extends EventEmitter {
     async recvS(
         bytes: number = TubeContext.bytes,
         timeout: number = TubeContext.longTimeout,
-        encoding: string = TubeContext.encoding
+        encoding: Encoding = TubeContext.encoding
     ): Promise<string> {
         return (await this.recv(bytes, timeout)).toString(encoding);
     }
@@ -268,7 +279,7 @@ export class Tube extends EventEmitter {
      * @param encoding The encoding to use.
      * @return The data received.
      */
-    async recvallS(encoding: string = TubeContext.encoding): Promise<string> {
+    async recvallS(encoding: Encoding = TubeContext.encoding): Promise<string> {
         return (await this.recvall()).toString(encoding);
     }
 
@@ -367,7 +378,7 @@ export class Tube extends EventEmitter {
             | "return"
             | "buffer"
             | "throw" = TubeContext.handleIncomplete,
-        encoding: string = TubeContext.encoding
+        encoding: Encoding = TubeContext.encoding
     ): Promise<string> {
         return (
             await this.recvuntil(delims, timeout, handleIncomplete)
@@ -435,7 +446,7 @@ export class Tube extends EventEmitter {
             | "buffer"
             | "throw" = TubeContext.handleIncomplete,
         lineEnding: Stringable = TubeContext.lineEnding,
-        encoding: string = TubeContext.encoding
+        encoding: Encoding = TubeContext.encoding
     ): Promise<string> {
         return (
             await this.recvline(keepends, timeout, handleIncomplete, lineEnding)
@@ -461,10 +472,10 @@ export class Tube extends EventEmitter {
             | "buffer"
             | "throw" = TubeContext.handleIncomplete,
         lineEnding: Stringable = TubeContext.lineEnding,
-        predEncoding: string = TubeContext.encoding
+        predEncoding: Encoding = TubeContext.encoding
     ): Promise<Buffer> {
         let that: Tube = this;
-        return new Promise(async function (res, rej) {
+        return new Promise(async function(res, rej) {
             let graceful: boolean = false;
             let resolve: () => void = () => undefined;
             let shouldContinue: boolean = true;
@@ -484,17 +495,34 @@ export class Tube extends EventEmitter {
                     res(Buffer.alloc(0));
                     that.unrecv(scrapped);
                 } else {
-                    res(Buffer.concat([scrapped, data], scrapped.length + data.length));
+                    res(
+                        Buffer.concat(
+                            [scrapped, data],
+                            scrapped.length + data.length
+                        )
+                    );
                 }
                 shouldContinue = false;
             });
-            while (shouldContinue && that.connected("in") && (data = await that.recvline(keepends, timeout, "buffer", lineEnding)).length) {
+            while (
+                shouldContinue &&
+                that.connected("in") &&
+                (data = await that.recvline(
+                    keepends,
+                    timeout,
+                    "buffer",
+                    lineEnding
+                )).length
+            ) {
                 if (pred(data, data.toString(predEncoding))) {
                     res(data);
                     graceful = true;
                     break;
                 }
-                scrapped = Buffer.concat([scrapped, data], scrapped.length + data.length);
+                scrapped = Buffer.concat(
+                    [scrapped, data],
+                    scrapped.length + data.length
+                );
             }
             resolve();
         });
@@ -520,10 +548,19 @@ export class Tube extends EventEmitter {
             | "buffer"
             | "throw" = TubeContext.handleIncomplete,
         lineEnding: Stringable = TubeContext.lineEnding,
-        predEncoding: string = TubeContext.encoding,
-        encoding: string = TubeContext.encoding
+        predEncoding: Encoding = TubeContext.encoding,
+        encoding: Encoding = TubeContext.encoding
     ): Promise<string> {
-        return (await this.recvlinePred(pred, keepends, timeout, handleIncomplete, lineEnding, predEncoding)).toString("utf8");
+        return (
+            await this.recvlinePred(
+                pred,
+                keepends,
+                timeout,
+                handleIncomplete,
+                lineEnding,
+                predEncoding
+            )
+        ).toString("utf8");
     }
 
     /**
@@ -577,7 +614,7 @@ export class Tube extends EventEmitter {
      */
     async cleanS(
         timeout: number = TubeContext.shortTimeout,
-        encoding: string = TubeContext.encoding
+        encoding: Encoding = TubeContext.encoding
     ): Promise<string> {
         return (await this.clean(timeout)).toString(encoding);
     }
@@ -590,5 +627,46 @@ export class Tube extends EventEmitter {
             await this.io.destroy();
         }
         this.io = IODestroyed;
+    }
+
+    /**
+     * Sends data to the tube.
+     * @param data Data to send.
+     * @param encoding The encoding to use.
+     * @return The data sent, as a buffer.
+     */
+    send(
+        data: Stringable,
+        encoding: Encoding = TubeContext.encoding
+    ): Stringable {
+        if (!this.connected("out")) {
+            throw new Error("Cannot write to io object.");
+        }
+        if (typeof data == "string") {
+            data = Buffer.from(data, encoding);
+        }
+        (this.io as IOWritable).input.write(data);
+        return data;
+    }
+
+    /**
+     * Sends data to the tube after a deliminator is reached.
+     * @param delims Array of deliminators or one deliminator.
+     * @param data Data to send.
+     * @param timeout The time, in seconds, to stop waiting for data and to timeout.
+     * @param handleIncomplete If "return", the data received will be returned, if "buffer", the data received will be buffered and an empty buffer returned, if "throw", an error will be thrown and data will be buffered.
+     * @param encoding The encoding to use.
+     * @return The data received to the deliminator.
+     */
+    async sendafter(
+        delims: Stringable | Stringable[],
+        data: Stringable,
+        timeout: number = TubeContext.longTimeout,
+        handleIncomplete: "return" | "buffer" | "throw" = TubeContext.handleIncomplete,
+        encoding: Encoding = TubeContext.encoding
+    ): Promise<Stringable> {
+        let received: Buffer = await this.recvuntil(delims, timeout, handleIncomplete);
+        this.send(data, encoding);
+        return received;
     }
 }

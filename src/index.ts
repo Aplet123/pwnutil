@@ -10,4 +10,5 @@ export * from "./lib/tubes/Tube.js";
 export * from "./models/IO.js";
 export * from "./models/Process.js";
 export * from "./models/Stringable.js";
+export * from "./models/Encoding.js";
 
