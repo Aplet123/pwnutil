@@ -47,7 +47,7 @@ export function waitForEvent(
 }
 
 /**
- * Waits for a period of time.
+ * Waits for a period of time or for a promise to resolve.
  * @param time Time in milliseconds.
  * @param expire A promise that will end the timer when it resolves.
  * @param reject If the promise should be rejected when the `expire` promise resolves.
@@ -56,9 +56,11 @@ export function waitForEvent(
 export function waitForTime(time: number, expire?: Promise<any>, reject: boolean = false): Promise<boolean> {
     return new Promise((res, rej) => {
         let to: NodeJS.Timeout;
-        to = setTimeout(function() {
-            res(true);
-        }, time);
+        if (time >= 0) {
+            to = setTimeout(function() {
+                res(true);
+            }, time);
+        }
         if (expire) {
             expire.then(v => {
                 clearTimeout(to);

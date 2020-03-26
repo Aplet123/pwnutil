@@ -49,10 +49,16 @@ export interface TubeContextInterface {
      * The line endings for functions like `recvline`.
      */
     lineEnding: Stringable;
+    /**
+     * If line endings should be kept for functions like `recvline`.
+     */
+    keepEnds: boolean;
 }
 
 /**
  * The context for the tube functions which contains all the default arguments.
+ *
+ * Refer to TubeContextInterface.
  */
 const TubeContext: TubeContextInterface = {
     bytes: 4096,
@@ -62,7 +68,8 @@ const TubeContext: TubeContextInterface = {
     encoding: "utf8",
     throwIncomplete: true,
     handleIncomplete: "return",
-    lineEnding: "\n"
+    lineEnding: "\n",
+    keepEnds: false
 };
 
 export { TubeContext };
@@ -228,7 +235,7 @@ export class Tube extends EventEmitter {
     }
 
     /**
-     * Inserts data back into the data buffer.
+     * Inserts data back into the start of the data buffer.
      * @param data Data to insert.
      */
     unrecv(data: Stringable): void {
@@ -270,11 +277,15 @@ export class Tube extends EventEmitter {
      * @param delims Array of deliminators or one deliminator.
      * @param timeout The time, in seconds, to stop waiting for data and to timeout.
      * @param throwIncomplete If true, an error will be thrown on timeout and data will be buffered. Otherwise, all data received will be returned.
+     * @return The data received.
      */
     recvuntil(
         delims: Stringable | Stringable[],
         timeout: number = TubeContext.longTimeout,
-        throwIncomplete: boolean = TubeContext.throwIncomplete
+        handleIncomplete:
+            | "return"
+            | "buffer"
+            | "throw" = TubeContext.handleIncomplete
     ): Promise<Buffer> {
         let that: Tube = this;
         let prom: Promise<Buffer> = new Promise(async function(res, rej) {
@@ -283,6 +294,7 @@ export class Tube extends EventEmitter {
             }
             let ret: Buffer = Buffer.alloc(0);
             let graceful: boolean = false;
+            let shouldContinue: boolean = true;
             let resolve: () => void = () => undefined;
             waitForTime(
                 timeout * 1000,
@@ -291,17 +303,20 @@ export class Tube extends EventEmitter {
                 if (graceful) {
                     return;
                 }
-                if (throwIncomplete) {
+                if (handleIncomplete == "buffer") {
+                    that.unrecv(ret);
+                } else if (handleIncomplete == "throw") {
                     that.unrecv(ret);
                     rej("Timeout before reaching deliminator.");
                 } else {
                     res(ret);
                 }
+                shouldContinue = false;
             });
             if (!(delims instanceof Array)) {
                 delims = [delims];
             }
-            while (true) {
+            while (shouldContinue) {
                 if (!that.connected("in")) {
                     resolve();
                     break;
@@ -348,11 +363,14 @@ export class Tube extends EventEmitter {
     async recvuntilS(
         delims: Stringable | Stringable[],
         timeout: number = TubeContext.longTimeout,
-        throwIncomplete: boolean = TubeContext.throwIncomplete,
+        handleIncomplete:
+            | "return"
+            | "buffer"
+            | "throw" = TubeContext.handleIncomplete,
         encoding: string = TubeContext.encoding
     ): Promise<string> {
         return (
-            await this.recvuntil(delims, timeout, throwIncomplete)
+            await this.recvuntil(delims, timeout, handleIncomplete)
         ).toString(encoding);
     }
 
@@ -365,7 +383,7 @@ export class Tube extends EventEmitter {
      * @return The data received.
      */
     async recvline(
-        keepends: boolean = false,
+        keepends: boolean = TubeContext.keepEnds,
         timeout: number = TubeContext.longTimeout,
         handleIncomplete:
             | "return"
@@ -375,7 +393,11 @@ export class Tube extends EventEmitter {
     ): Promise<Buffer> {
         let data: Buffer;
         try {
-            let data: Buffer = await this.recvuntil(lineEnding, timeout, true);
+            let data: Buffer = await this.recvuntil(
+                lineEnding,
+                timeout,
+                "throw"
+            );
             if (
                 !keepends &&
                 data.slice(-lineEnding.length).equals(Buffer.from(lineEnding))
@@ -385,7 +407,9 @@ export class Tube extends EventEmitter {
             return data;
         } catch (err) {
             if (handleIncomplete == "return") {
-                return this.outBuffer;
+                const ret: Buffer = this.outBuffer;
+                this.outBuffer = Buffer.alloc(0);
+                return ret;
             } else if (handleIncomplete == "throw") {
                 throw new Error("Could not find a newline.");
             } else {
@@ -404,7 +428,7 @@ export class Tube extends EventEmitter {
      * @return The data received.
      */
     async recvlineS(
-        keepends: boolean = false,
+        keepends: boolean = TubeContext.keepEnds,
         timeout: number = TubeContext.longTimeout,
         handleIncomplete:
             | "return"
@@ -416,6 +440,90 @@ export class Tube extends EventEmitter {
         return (
             await this.recvline(keepends, timeout, handleIncomplete, lineEnding)
         ).toString(encoding);
+    }
+
+    /**
+     * Reads lines until a line matches the predicate given.
+     * @param pred Function to test lines with.
+     * @param keepends If true, the line ending at the end of the line will be kept.
+     * @param timeout The time, in seconds, to stop waiting for the data and to timeout.
+     * @param handleIncomplete If "return", all data received, including non-matching lines, will be returned, if "buffer", the data received will be buffered and an empty buffer returned, if "throw", an error will be thrown and data will be buffered.
+     * @param lineEnding The line ending to use.
+     * @param predEncoding The encoding to use to decode the buffer to pass to the predicate function.
+     * @return The line that matches the predicate.
+     */
+    recvlinePred(
+        pred: (buf: Buffer, str: string) => boolean,
+        keepends: boolean = TubeContext.keepEnds,
+        timeout: number = TubeContext.longTimeout,
+        handleIncomplete:
+            | "return"
+            | "buffer"
+            | "throw" = TubeContext.handleIncomplete,
+        lineEnding: Stringable = TubeContext.lineEnding,
+        predEncoding: string = TubeContext.encoding
+    ): Promise<Buffer> {
+        let that: Tube = this;
+        return new Promise(async function (res, rej) {
+            let graceful: boolean = false;
+            let resolve: () => void = () => undefined;
+            let shouldContinue: boolean = true;
+            let scrapped: Buffer = Buffer.alloc(0);
+            let data: Buffer;
+            waitForTime(
+                timeout * 1000,
+                new Promise((resf, rejf) => (resolve = resf))
+            ).then(v => {
+                if (graceful) {
+                    return;
+                }
+                if (handleIncomplete == "throw") {
+                    rej("Timeout before reaching deliminator.");
+                    that.unrecv(scrapped);
+                } else if (handleIncomplete == "buffer") {
+                    res(Buffer.alloc(0));
+                    that.unrecv(scrapped);
+                } else {
+                    res(Buffer.concat([scrapped, data], scrapped.length + data.length));
+                }
+                shouldContinue = false;
+            });
+            while (shouldContinue && that.connected("in") && (data = await that.recvline(keepends, timeout, "buffer", lineEnding)).length) {
+                if (pred(data, data.toString(predEncoding))) {
+                    res(data);
+                    graceful = true;
+                    break;
+                }
+                scrapped = Buffer.concat([scrapped, data], scrapped.length + data.length);
+            }
+            resolve();
+        });
+    }
+
+    /**
+     * Equivalent to `recvlinePred` but decodes the buffer into a string.
+     * @param pred Function to test lines with.
+     * @param keepends If true, the line ending at the end of the line will be kept.
+     * @param timeout The time, in seconds, to stop waiting for the data and to timeout.
+     * @param handleIncomplete If "return", all data received, including non-matching lines, will be returned, if "buffer", the data received will be buffered and an empty buffer returned, if "throw", an error will be thrown and data will be buffered.
+     * @param lineEnding The line ending to use.
+     * @param predEncoding The encoding to use to decode the buffer to pass to the predicate function.
+     * @param encoding The encoding to use.
+     * @return The line that matches the predicate.
+     */
+    async recvlinePredS(
+        pred: (buf: Buffer, str: string) => boolean,
+        keepends: boolean = TubeContext.keepEnds,
+        timeout: number = TubeContext.longTimeout,
+        handleIncomplete:
+            | "return"
+            | "buffer"
+            | "throw" = TubeContext.handleIncomplete,
+        lineEnding: Stringable = TubeContext.lineEnding,
+        predEncoding: string = TubeContext.encoding,
+        encoding: string = TubeContext.encoding
+    ): Promise<string> {
+        return (await this.recvlinePred(pred, keepends, timeout, handleIncomplete, lineEnding, predEncoding)).toString("utf8");
     }
 
     /**
@@ -453,7 +561,10 @@ export class Tube extends EventEmitter {
         }
         let ret: Buffer = Buffer.alloc(0);
         let data: Buffer;
-        while ((data = await this.recv(4096, timeout)).length) {
+        while (
+            this.connected("in") &&
+            (data = await this.recv(4096, timeout)).length
+        ) {
             ret = Buffer.concat([ret, data], ret.length + data.length);
         }
         return ret;
