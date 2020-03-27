@@ -68,7 +68,7 @@ const TubeContext: TubeContextInterface = {
     encoding: "utf8",
     throwIncomplete: true,
     handleIncomplete: "return",
-    lineEnding: "\n",
+    lineEnding: Buffer.from("\n", "utf8"),
     keepEnds: false
 };
 
@@ -650,6 +650,24 @@ export class Tube extends EventEmitter {
     }
 
     /**
+     * Sends data with a newline at the end.
+     * @param data Data to send.
+     * @param lineEnding The line ending to use.
+     * @param encoding The encoding to use.
+     * @return The data sent, as a buffer.
+     */
+    sendline(data: Stringable, lineEnding = TubeContext.lineEnding, encoding: Encoding = TubeContext.encoding): Stringable {
+        if (typeof data == "string") {
+            data = Buffer.from(data, encoding);
+        }
+        if (typeof lineEnding == "string") {
+            lineEnding = Buffer.from(lineEnding, encoding);
+        }
+        data = Buffer.concat([data, lineEnding], data.length + lineEnding.length);
+        return this.send(data);
+    }
+
+    /**
      * Sends data to the tube after a deliminator is reached.
      * @param delims Array of deliminators or one deliminator.
      * @param data Data to send.
@@ -662,10 +680,17 @@ export class Tube extends EventEmitter {
         delims: Stringable | Stringable[],
         data: Stringable,
         timeout: number = TubeContext.longTimeout,
-        handleIncomplete: "return" | "buffer" | "throw" = TubeContext.handleIncomplete,
+        handleIncomplete:
+            | "return"
+            | "buffer"
+            | "throw" = TubeContext.handleIncomplete,
         encoding: Encoding = TubeContext.encoding
     ): Promise<Stringable> {
-        let received: Buffer = await this.recvuntil(delims, timeout, handleIncomplete);
+        let received: Buffer = await this.recvuntil(
+            delims,
+            timeout,
+            handleIncomplete
+        );
         this.send(data, encoding);
         return received;
     }
