@@ -656,14 +656,21 @@ export class Tube extends EventEmitter {
      * @param encoding The encoding to use.
      * @return The data sent, as a buffer.
      */
-    sendline(data: Stringable, lineEnding = TubeContext.lineEnding, encoding: Encoding = TubeContext.encoding): Stringable {
+    sendline(
+        data: Stringable,
+        lineEnding = TubeContext.lineEnding,
+        encoding: Encoding = TubeContext.encoding
+    ): Stringable {
         if (typeof data == "string") {
             data = Buffer.from(data, encoding);
         }
         if (typeof lineEnding == "string") {
             lineEnding = Buffer.from(lineEnding, encoding);
         }
-        data = Buffer.concat([data, lineEnding], data.length + lineEnding.length);
+        data = Buffer.concat(
+            [data, lineEnding],
+            data.length + lineEnding.length
+        );
         return this.send(data);
     }
 
@@ -693,5 +700,101 @@ export class Tube extends EventEmitter {
         );
         this.send(data, encoding);
         return received;
+    }
+
+    /**
+     * Sends data with a newline at the end after a deliminator is reached.
+     * @param delims Array of deliminators or one deliminator.
+     * @param data Data to send.
+     * @param timeout The time, in seconds, to stop waiting for data and to timeout.
+     * @param handleIncomplete If "return", the data received will be returned, if "buffer", the data received will be buffered and an empty buffer returned, if "throw", an error will be thrown and data will be buffered.
+     * @param lineEnding The line ending to use.
+     * @param encoding The encoding to use.
+     * @return The data received to the deliminator.
+     */
+    sendlineafter(
+        delims: Stringable | Stringable[],
+        data: Stringable,
+        timeout: number = TubeContext.longTimeout,
+        handleIncomplete:
+            | "return"
+            | "buffer"
+            | "throw" = TubeContext.handleIncomplete,
+        lineEnding: Stringable = TubeContext.lineEnding,
+        encoding: Encoding = TubeContext.encoding
+    ): Promise<Stringable> {
+        if (typeof data == "string") {
+            data = Buffer.from(data, encoding);
+        }
+        if (typeof lineEnding == "string") {
+            lineEnding = Buffer.from(lineEnding, encoding);
+        }
+        data = Buffer.concat(
+            [data, lineEnding],
+            data.length + lineEnding.length
+        );
+        return this.sendafter(delims, data, timeout, handleIncomplete, encoding);
+    }
+
+    /**
+     * Sends data to the tube then waits for a deliminator to be reached.
+     * @param delims Array of deliminators or one deliminator.
+     * @param data Data to send.
+     * @param timeout The time, in seconds, to stop waiting for data and to timeout.
+     * @param handleIncomplete If "return", the data received will be returned, if "buffer", the data received will be buffered and an empty buffer returned, if "throw", an error will be thrown and data will be buffered.
+     * @param encoding The encoding to use.
+     * @return The data received to the deliminator.
+     */
+    async sendthen(
+        delims: Stringable | Stringable[],
+        data: Stringable,
+        timeout: number = TubeContext.longTimeout,
+        handleIncomplete:
+            | "return"
+            | "buffer"
+            | "throw" = TubeContext.handleIncomplete,
+        encoding: Encoding = TubeContext.encoding
+    ): Promise<Stringable> {
+        this.send(data, encoding);
+        let received: Buffer = await this.recvuntil(
+            delims,
+            timeout,
+            handleIncomplete
+        );
+        return received;
+    }
+
+    /**
+     * Sends data with a newline at the end then waits for a deliminator to be reached.
+     * @param delims Array of deliminators or one deliminator.
+     * @param data Data to send.
+     * @param timeout The time, in seconds, to stop waiting for data and to timeout.
+     * @param handleIncomplete If "return", the data received will be returned, if "buffer", the data received will be buffered and an empty buffer returned, if "throw", an error will be thrown and data will be buffered.
+     * @param lineEnding The line ending to use.
+     * @param encoding The encoding to use.
+     * @return The data received to the deliminator.
+     */
+    sendlinethen(
+        delims: Stringable | Stringable[],
+        data: Stringable,
+        timeout: number = TubeContext.longTimeout,
+        handleIncomplete:
+            | "return"
+            | "buffer"
+            | "throw" = TubeContext.handleIncomplete,
+        lineEnding: Stringable = TubeContext.lineEnding,
+        encoding: Encoding = TubeContext.encoding
+    ): Promise<Stringable> {
+        if (typeof data == "string") {
+            data = Buffer.from(data, encoding);
+        }
+        if (typeof lineEnding == "string") {
+            lineEnding = Buffer.from(lineEnding, encoding);
+        }
+        data = Buffer.concat(
+            [data, lineEnding],
+            data.length + lineEnding.length
+        );
+        return this.sendthen(delims, data, timeout, handleIncomplete, encoding);
     }
 }
